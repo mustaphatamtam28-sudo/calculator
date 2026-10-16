@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mode Calculator | CalcTools Hub</title>
+  <meta name="description" content="Calculate the mode of a data set quickly with this free online mode calculator. Find the most frequent value in your list." />
+  <meta name="keywords" content="mode calculator, statistics calculator, most frequent value" />
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f5f7fb; color: #1f2937; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    header, footer { text-align: center; padding: 20px 0; }
+    nav a { color: #2563eb; text-decoration: none; margin: 0 10px; }
+    .card { background: #fff; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,.08); padding: 20px; margin-bottom: 20px; }
+    label { display: block; margin: 12px 0 8px; font-weight: 700; }
+    textarea, input, select, button {
+      width: 100%; box-sizing: border-box; padding: 12px 14px; border-radius: 12px;
+      border: 1px solid #d1d5db; font-size: 16px;
+    }
+    button { background: #2563eb; color: #fff; border: 0; cursor: pointer; margin-top: 14px; }
+    button:hover { background: #1d4ed8; }
+    .result { margin-top: 16px; padding: 14px; background: #eff6ff; border-radius: 12px; }
+    .muted { color: #6b7280; font-size: 14px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Mode Calculator</h1>
+      <p class="muted">Find the most frequent value in a data set.</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card">
+        <label for="numbers">Enter numbers separated by commas</label>
+        <textarea id="numbers" rows="5" placeholder="Example: 2, 3, 4, 4, 5, 5, 5, 6"></textarea>
+        <button onclick="calculateMode()">Calculate Mode</button>
+        <div id="result" class="result" style="display:none;"></div>
+      </section>
+
+      <section class="card">
+        <h2>How it works</h2>
+        <p class="muted">
+          The mode is the value that appears most often in a list. A data set can have one mode, more than one mode,
+          or no mode if all values appear only once.
+        </p>
+      </section>
+    </main>
+
+    <footer class="muted">
+      <p>&copy; 2026 CalcTools Hub</p>
+    </footer>
+  </div>
+
+  <script>
+    function calculateMode() {
+      const input = document.getElementById('numbers').value.trim();
+      const resultDiv = document.getElementById('result');
+
+      if (!input) {
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = 'Please enter at least one number.';
+        return;
+      }
+
+      const numbers = input.split(',').map(n => parseFloat(n.trim())).filter(n => !isNaN(n));
+
+      if (numbers.length === 0) {
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = 'Please enter valid numbers only.';
+        return;
+      }
+
+      const frequency = {};
+      let maxCount = 0;
+
+      numbers.forEach(num => {
+        frequency[num] = (frequency[num] || 0) + 1;
+        if (frequency[num] > maxCount) maxCount = frequency[num];
+      });
+
+      const modes = Object.keys(frequency)
+        .filter(key => frequency[key] === maxCount)
+        .map(Number);
+
+      resultDiv.style.display = 'block';
+      if (modes.length === numbers.length) {
+        resultDiv.innerHTML = 'No mode. Every value appears only once.';
+      } else {
+        resultDiv.innerHTML = `<strong>Mode:</strong> ${modes.join(', ')}<br><strong>Frequency:</strong> ${maxCount}`;
+      }
+    }
+  </script>
+</body>
+</html>
