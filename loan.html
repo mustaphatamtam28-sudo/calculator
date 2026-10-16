@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loan Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      margin: 0;
+      padding: 20px;
+    }
+    .box {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    h1 {
+      margin-top: 0;
+      color: #111827;
+    }
+    p {
+      color: #4b5563;
+    }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    button {
+      background: #1e40af;
+      color: white;
+      border: none;
+    }
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    a {
+      text-decoration: none;
+      color: #1e40af;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Loan Calculator</h1>
+    <p><a href="index.html">Back to Home</a></p>
+
+    <input type="number" id="amount" placeholder="Loan Amount">
+    <input type="number" id="rate" placeholder="Annual Interest Rate (%)">
+    <input type="number" id="years" placeholder="Loan Term (Years)">
+    <button onclick="calculateLoan()">Calculate</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculateLoan() {
+      const amount = parseFloat(document.getElementById('amount').value);
+      const rate = parseFloat(document.getElementById('rate').value) / 100 / 12;
+      const years = parseFloat(document.getElementById('years').value);
+      const months = years * 12;
+
+      if (!amount || !rate || !years) {
+        document.getElementById('result').innerText = 'Please enter valid values.';
+        return;
+      }
+
+      const monthly = (amount * rate) / (1 - Math.pow(1 + rate, -months));
+      document.getElementById('result').innerText = 'Monthly Payment: $' + monthly.toFixed(2);
+    }
+  </script>
+</body>
+</html>
