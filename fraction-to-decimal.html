@@ -1,1 +1,124 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Convert fractions to decimals instantly with this simple Fraction to Decimal Calculator.">
+  <title>Fraction to Decimal | CalcTools Hub</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --border: #dbe3f0;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+    header, footer { background: #fff; border-bottom: 1px solid var(--border); }
+    footer { border-top: 1px solid var(--border); border-bottom: none; }
+    .brand { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 18px 0; }
+    .brand a { text-decoration: none; color: var(--primary); font-weight: bold; }
+    .hero { margin: 24px 0; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; padding: 28px; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .hero h1 { margin: 0 0 10px; font-size: 2rem; }
+    .layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 20px; align-items: start; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px; }
+    label { display: block; font-weight: bold; margin: 14px 0 6px; }
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 16px;
+      background: #fff;
+    }
+    button {
+      margin-top: 16px;
+      width: 100%;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 12px;
+      background: var(--primary);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover { background: var(--primary-dark); }
+    .result {
+      margin-top: 18px;
+      padding: 16px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      min-height: 60px;
+      word-break: break-word;
+    }
+    .info h2 { margin-top: 0; }
+    .info p { color: var(--muted); }
+    @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } .hero h1 { font-size: 1.6rem; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container brand">
+      <div><a href="index.html">CalcTools Hub</a></div>
+      <nav><a href="index.html">Home</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Fraction to Decimal Calculator</h1>
+      <p>Convert fractions into decimal values instantly.</p>
+    </section>
+
+    <div class="layout">
+      <section class="card">
+        <h2>Converter</h2>
+        <label for="numerator">Numerator</label>
+        <input type="number" id="numerator" placeholder="Enter numerator">
+
+        <label for="denominator">Denominator</label>
+        <input type="number" id="denominator" placeholder="Enter denominator">
+
+        <button onclick="convertToDecimal()">Convert</button>
+        <div class="result" id="result">Your result will appear here.</div>
+      </section>
+
+      <aside class="card info">
+        <h2>How it works</h2>
+        <p>Divide the numerator by the denominator to get the decimal form of the fraction.</p>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 CalcTools Hub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function convertToDecimal() {
+      const numerator = parseFloat(document.getElementById('numerator').value);
+      const denominator = parseFloat(document.getElementById('denominator').value);
+      const result = document.getElementById('result');
+
+      if (isNaN(numerator) || isNaN(denominator) || denominator === 0) {
+        result.textContent = 'Please enter valid numbers and make sure the denominator is not zero.';
+        return;
+      }
+
+      const decimal = numerator / denominator;
+      result.innerHTML = `<strong>Result:</strong> ${decimal}`;
+    }
+  </script>
+</body>
+</html>
