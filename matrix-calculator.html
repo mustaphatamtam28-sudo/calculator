@@ -1,0 +1,231 @@
+<!-- matrix-calculator.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matrix Calculator | CalcTools Hub</title>
+  <meta name="description" content="Perform basic matrix calculations with this free matrix calculator. Add, subtract, or multiply matrices with an easy interface." />
+  <meta name="keywords" content="matrix calculator, matrix math, add matrices, multiply matrices, CalcTools Hub" />
+  <link rel="canonical" href="https://yourusername.github.io/calctools-hub/matrix-calculator.html" />
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --border: #dbe3ef;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary), #1e40af);
+      color: #fff;
+      padding: 28px 16px;
+      text-align: center;
+    }
+    header h1 { margin: 0 0 8px; font-size: 2rem; }
+    header p { margin: 0; color: rgba(255,255,255,0.9); }
+    nav {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      text-align: center;
+    }
+    nav a {
+      color: var(--primary);
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 700;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+    .tool-card, .content-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .tool-card h2, .content-card h2 { margin-top: 0; }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    textarea, select, button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 1rem;
+    }
+    textarea, select {
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
+      background: #fff;
+    }
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    button {
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:hover { background: var(--primary-dark); }
+    .result {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      white-space: pre-wrap;
+      font-weight: 700;
+    }
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: #fff;
+    }
+    @media (min-width: 768px) {
+      .tool-card { max-width: 820px; margin-left: auto; margin-right: auto; }
+      .content-card { max-width: 900px; margin-left: auto; margin-right: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CalcTools Hub</h1>
+    <p>Free online matrix calculator for basic matrix operations</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms</a>
+  </nav>
+
+  <main class="container">
+    <section class="tool-card">
+      <h2>Matrix Calculator</h2>
+      <label for="matrix1">Matrix 1</label>
+      <textarea id="matrix1" placeholder="1 2&#10;3 4"></textarea>
+
+      <label for="matrix2">Matrix 2</label>
+      <textarea id="matrix2" placeholder="5 6&#10;7 8"></textarea>
+
+      <label for="operation">Operation</label>
+      <select id="operation">
+        <option value="add">Add</option>
+        <option value="subtract">Subtract</option>
+        <option value="multiply">Multiply</option>
+      </select>
+
+      <button onclick="calculateMatrix()">Calculate</button>
+      <div class="result" id="result">Result will appear here.</div>
+    </section>
+
+    <section class="content-card">
+      <h2>About This Tool</h2>
+      <p>
+        Matrices are rectangular arrays of numbers used in algebra, geometry, physics, computer graphics, and many engineering fields. They can be added, subtracted, and multiplied when dimensions allow it. This calculator helps you perform those basic matrix operations quickly by entering values in a simple text format.
+      </p>
+      <p>
+        To enter a matrix, type each row on a new line and separate numbers with spaces. For example, a 2×2 matrix can be written as two lines with two numbers on each line. The tool checks whether the matrices have compatible dimensions before calculating the result. If the sizes do not match, it will display a helpful message instead of producing an invalid answer.
+      </p>
+      <p>
+        Matrix math is an important part of many higher-level math topics, including linear algebra and systems of equations. This page is built to match the same clean style as the rest of CalcTools Hub, so users can move between tools easily. It is especially useful on mobile devices where a simple interface makes input faster and easier.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 CalcTools Hub. All rights reserved.
+  </footer>
+
+  <script>
+    function parseMatrix(text) {
+      return text.trim().split("\n").map(row =>
+        row.trim().split(/\s+/).map(Number)
+      );
+    }
+
+    function matricesSameSize(a, b) {
+      return a.length === b.length && a.every((row, i) => row.length === b[i].length);
+    }
+
+    function calculateMatrix() {
+      const m1Text = document.getElementById("matrix1").value;
+      const m2Text = document.getElementById("matrix2").value;
+      const operation = document.getElementById("operation").value;
+      const result = document.getElementById("result");
+
+      try {
+        const A = parseMatrix(m1Text);
+        const B = parseMatrix(m2Text);
+
+        if (A.some(row => row.some(isNaN)) || B.some(row => row.some(isNaN))) {
+          result.textContent = "Please enter valid numbers only.";
+          return;
+        }
+
+        let output = [];
+
+        if (operation === "add" || operation === "subtract") {
+          if (!matricesSameSize(A, B)) {
+            result.textContent = "Matrices must have the same size for addition or subtraction.";
+            return;
+          }
+
+          output = A.map((row, i) =>
+            row.map((val, j) =>
+              operation === "add" ? val + B[i][j] : val - B[i][j]
+            )
+          );
+        } else if (operation === "multiply") {
+          if (A[0].length !== B.length) {
+            result.textContent = "Number of columns in Matrix 1 must equal number of rows in Matrix 2.";
+            return;
+          }
+
+          for (let i = 0; i < A.length; i++) {
+            output[i] = [];
+            for (let j = 0; j < B[0].length; j++) {
+              let sum = 0;
+              for (let k = 0; k < B.length; k++) {
+                sum += A[i][k] * B[k][j];
+              }
+              output[i][j] = sum;
+            }
+          }
+        }
+
+        result.textContent = output.map(row => row.join(" ")).join("\n");
+      } catch (e) {
+        result.textContent = "Please check your matrix input format.";
+      }
+    }
+  </script>
+</body>
+</html>
