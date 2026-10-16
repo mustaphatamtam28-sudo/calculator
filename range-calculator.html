@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Range Calculator | CalcTools Hub</title>
+  <meta name="description" content="Calculate the range of a set of numbers quickly and easily with the Range Calculator." />
+  <link rel="canonical" href="https://YOUR-USERNAME.github.io/calctools-hub/range-calculator.html" />
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --border: #dbe3f0;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+    .wrapper { max-width: 1100px; margin: 0 auto; padding: 18px; }
+    header, .card, footer {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    header { padding: 22px; margin-bottom: 18px; }
+    .brand { font-size: 1.7rem; font-weight: 800; color: var(--primary); margin: 0 0 6px; }
+    .subtitle { margin: 0; color: var(--muted); }
+    nav { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; }
+    nav a {
+      text-decoration: none;
+      color: var(--primary);
+      background: #eef4ff;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    main { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .card { padding: 20px; }
+    h1 { margin-top: 0; font-size: 1.8rem; }
+    label { display: block; margin: 14px 0 8px; font-weight: 700; }
+    input, button {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 16px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 800;
+    }
+    button:hover { background: var(--primary-dark); }
+    .result {
+      margin-top: 18px;
+      padding: 16px;
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      line-height: 1.7;
+    }
+    .content p { color: var(--muted); line-height: 1.75; }
+    footer { margin-top: 18px; padding: 16px 20px; text-align: center; color: var(--muted); }
+    @media (max-width: 800px) {
+      main { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <p class="brand">CalcTools Hub</p>
+      <p class="subtitle">Free, simple, and accurate online calculators</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card">
+        <h1>Range Calculator</h1>
+        <p>Enter numbers separated by commas to find the range.</p>
+
+        <label for="numbers">Numbers</label>
+        <input type="text" id="numbers" placeholder="e.g. 12, 7, 25, 9" />
+
+        <button onclick="calculateRange()">Calculate Range</button>
+
+        <div class="result" id="result">
+          Enter a list of numbers to see the range.
+        </div>
+      </section>
+
+      <section class="card content">
+        <h2>How it works</h2>
+        <p>The range is a simple measure of spread in a data set. It is found by subtracting the smallest value from the largest value. This calculator is useful for basic statistics, school assignments, data checking, and quick comparisons when you need a fast answer without using a spreadsheet or advanced software.</p>
+        <p>To use the tool, enter numbers separated by commas. The calculator will ignore extra spaces and evaluate each value in the list. It then identifies the minimum and maximum numbers and displays the range clearly. This makes the process quick and easy even for users who are working on a mobile phone.</p>
+        <p>Range is one of the fastest ways to understand how far apart values are in a set, although it does not show the full picture of distribution. For deeper analysis, users may also compare range with mean, median, and standard deviation. CalcTools Hub provides all of these tools in a consistent format for easy navigation.</p>
+      </section>
+    </main>
+
+    <footer>
+      © 2026 CalcTools Hub. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    function calculateRange() {
+      const input = document.getElementById("numbers").value.trim();
+      const result = document.getElementById("result");
+
+      if (!input) {
+        result.innerHTML = "Please enter at least two numbers.";
+        return;
+      }
+
+      const values = input.split(",").map(n => parseFloat(n.trim())).filter(n => !isNaN(n));
+
+      if (values.length < 2) {
+        result.innerHTML = "Please enter at least two valid numbers.";
+        return;
+      }
+
+      const min = Math.min(...values);
+      const max = Math.max(...values);
+      const range = max - min;
+
+      result.innerHTML = `
+        <strong>Minimum:</strong> ${min}<br>
+        <strong>Maximum:</strong> ${max}<br>
+        <strong>Range:</strong> ${range}
+      `;
+    }
+  </script>
+</body>
+</html>
