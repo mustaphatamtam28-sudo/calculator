@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Percentage Change Calculator | CalcTools Hub</title>
+  <meta name="description" content="Calculate percentage increase or decrease with this free online percentage change calculator." />
+  <meta name="keywords" content="percentage change calculator, percentage increase calculator, percentage decrease calculator" />
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f5f7fb; color: #1f2937; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    header, footer { text-align: center; padding: 20px 0; }
+    nav a { color: #2563eb; text-decoration: none; margin: 0 10px; }
+    .card { background: #fff; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,.08); padding: 20px; margin-bottom: 20px; }
+    label { display: block; margin: 12px 0 8px; font-weight: 700; }
+    input, button, select {
+      width: 100%; box-sizing: border-box; padding: 12px 14px; border-radius: 12px;
+      border: 1px solid #d1d5db; font-size: 16px;
+    }
+    button { background: #2563eb; color: #fff; border: 0; cursor: pointer; margin-top: 14px; }
+    button:hover { background: #1d4ed8; }
+    .result { margin-top: 16px; padding: 14px; background: #eff6ff; border-radius: 12px; }
+    .muted { color: #6b7280; font-size: 14px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Percentage Change Calculator</h1>
+      <p class="muted">Calculate percentage increase or decrease between two values.</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card">
+        <label for="oldValue">Original value</label>
+        <input id="oldValue" type="number" step="any" placeholder="Example: 100" />
+        <label for="newValue">New value</label>
+        <input id="newValue" type="number" step="any" placeholder="Example: 120" />
+        <button onclick="calculatePercentageChange()">Calculate</button>
+        <div id="result" class="result" style="display:none;"></div>
+      </section>
+
+      <section class="card">
+        <h2>How it works</h2>
+        <p class="muted">
+          Percentage change compares the difference between an original value and a new value, then expresses that difference as a percentage of the original.
+        </p>
+      </section>
+    </main>
+
+    <footer class="muted">
+      <p>&copy; 2026 CalcTools Hub</p>
+    </footer>
+  </div>
+
+  <script>
+    function calculatePercentageChange() {
+      const oldValue = parseFloat(document.getElementById('oldValue').value);
+      const newValue = parseFloat(document.getElementById('newValue').value);
+      const resultDiv = document.getElementById('result');
+
+      if (isNaN(oldValue) || isNaN(newValue)) {
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = 'Please enter valid numbers.';
+        return;
+      }
+
+      if (oldValue === 0) {
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = 'Original value cannot be zero.';
+        return;
+      }
+
+      const change = ((newValue - oldValue) / oldValue) * 100;
+      const type = change >= 0 ? 'increase' : 'decrease';
+      resultDiv.style.display = 'block';
+      resultDiv.innerHTML = `Percentage ${type}: ${Math.abs(change).toFixed(2)}%`;
+    }
+  </script>
+</body>
+</html>
