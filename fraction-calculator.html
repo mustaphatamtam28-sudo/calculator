@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Use the Fraction Calculator to add, subtract, multiply, and divide fractions with clear step-by-step results.">
+  <title>Fraction Calculator | CalcTools Hub</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --border: #dbe3f0;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+    header, footer { background: #fff; border-bottom: 1px solid var(--border); }
+    footer { border-top: 1px solid var(--border); border-bottom: none; }
+    .brand { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 18px 0; }
+    .brand a { text-decoration: none; color: var(--primary); font-weight: bold; }
+    .hero { margin: 24px 0; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; padding: 28px; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .hero h1 { margin: 0 0 10px; font-size: 2rem; }
+    .layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 20px; align-items: start; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px; }
+    label { display: block; font-weight: bold; margin: 14px 0 6px; }
+    input, select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 16px;
+      background: #fff;
+    }
+    button {
+      margin-top: 16px;
+      width: 100%;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 12px;
+      background: var(--primary);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover { background: var(--primary-dark); }
+    .result {
+      margin-top: 18px;
+      padding: 16px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      min-height: 60px;
+      word-break: break-word;
+    }
+    .info h2 { margin-top: 0; }
+    .info p { color: var(--muted); }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } .hero h1 { font-size: 1.6rem; } .row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container brand">
+      <div><a href="index.html">CalcTools Hub</a></div>
+      <nav><a href="index.html">Home</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Fraction Calculator</h1>
+      <p>Add, subtract, multiply, or divide fractions quickly.</p>
+    </section>
+
+    <div class="layout">
+      <section class="card">
+        <h2>Calculator</h2>
+
+        <div class="row">
+          <div>
+            <label for="n1">Fraction 1 numerator</label>
+            <input type="number" id="n1" placeholder="Numerator">
+          </div>
+          <div>
+            <label for="d1">Fraction 1 denominator</label>
+            <input type="number" id="d1" placeholder="Denominator">
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="n2">Fraction 2 numerator</label>
+            <input type="number" id="n2" placeholder="Numerator">
+          </div>
+          <div>
+            <label for="d2">Fraction 2 denominator</label>
+            <input type="number" id="d2" placeholder="Denominator">
+          </div>
+        </div>
+
+        <label for="operation">Operation</label>
+        <select id="operation">
+          <option value="add">Add</option>
+          <option value="subtract">Subtract</option>
+          <option value="multiply">Multiply</option>
+          <option value="divide">Divide</option>
+        </select>
+
+        <button onclick="calculateFractions()">Calculate</button>
+        <div class="result" id="result">Your result will appear here.</div>
+      </section>
+
+      <aside class="card info">
+        <h2>How it works</h2>
+        <p>The tool converts fractions into a standard form and returns the answer as a simplified fraction.</p>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 CalcTools Hub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function gcd(a, b) {
+      a = Math.abs(a);
+      b = Math.abs(b);
+      while (b) {
+        const t = b;
+        b = a % b;
+        a = t;
+      }
+      return a;
+    }
+
+    function simplify(num, den) {
+      const divisor = gcd(num, den);
+      num /= divisor;
+      den /= divisor;
+      if (den < 0) {
+        num *= -1;
+        den *= -1;
+      }
+      return { num, den };
+    }
+
+    function calculateFractions() {
+      const n1 = parseInt(document.getElementById('n1').value);
+      const d1 = parseInt(document.getElementById('d1').value);
+      const n2 = parseInt(document.getElementById('n2').value);
+      const d2 = parseInt(document.getElementById('d2').value);
+      const operation = document.getElementById('operation').value;
+      const result = document.getElementById('result');
+
+      if ([n1, d1, n2, d2].some(v => isNaN(v)) || d1 === 0 || d2 === 0) {
+        result.textContent = 'Please enter valid fractions with non-zero denominators.';
+        return;
+      }
+
+      let num, den;
+
+      if (operation === 'add') {
+        num = n1 * d2 + n2 * d1;
+        den = d1 * d2;
+      } else if (operation === 'subtract') {
+        num = n1 * d2 - n2 * d1;
+        den = d1 * d2;
+      } else if (operation === 'multiply') {
+        num = n1 * n2;
+        den = d1 * d2;
+      } else if (operation === 'divide') {
+        if (n2 === 0) {
+          result.textContent = 'Cannot divide by a fraction with a zero numerator.';
+          return;
+        }
+        num = n1 * d2;
+        den = d1 * n2;
+      }
+
+      const simplified = simplify(num, den);
+      result.innerHTML = `<strong>Result:</strong> ${simplified.num}/${simplified.den}`;
+    }
+  </script>
+</body>
+</html>
