@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Age Calculator</title>
+</head>
+<body>
+  <h1>Age Calculator</h1>
+
+  <p>اختر تاريخ الميلاد:</p>
+  <input type="date" id="dob">
+  <button onclick="calculateAge()">احسب العمر</button>
+
+  <p id="result"></p>
+
+  <script>
+    function calculateAge() {
+      const dob = new Date(document.getElementById('dob').value);
+      const today = new Date();
+
+      if (isNaN(dob)) {
+        document.getElementById('result').innerText = 'من فضلك اختر تاريخًا صحيحًا';
+        return;
+      }
+
+      let age = today.getFullYear() - dob.getFullYear();
+      const month = today.getMonth() - dob.getMonth();
+
+      if (month < 0 || (month === 0 && today.getDate() < dob.getDate())) {
+        age--;
+      }
+
+      document.getElementById('result').innerText = 'عمرك هو: ' + age + ' سنة';
+    }
+  </script>
+</body>
+</html>
