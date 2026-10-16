@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salary Calculator | CalcTools Hub</title>
+  <meta name="description" content="Calculate gross salary, net salary, and deductions with this free online salary calculator." />
+  <meta name="keywords" content="salary calculator, net salary calculator, gross salary calculator" />
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f5f7fb; color: #1f2937; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    header, footer { text-align: center; padding: 20px 0; }
+    nav a { color: #2563eb; text-decoration: none; margin: 0 10px; }
+    .card { background: #fff; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,.08); padding: 20px; margin-bottom: 20px; }
+    label { display: block; margin: 12px 0 8px; font-weight: 700; }
+    input, button {
+      width: 100%; box-sizing: border-box; padding: 12px 14px; border-radius: 12px;
+      border: 1px solid #d1d5db; font-size: 16px;
+    }
+    button { background: #2563eb; color: #fff; border: 0; cursor: pointer; margin-top: 14px; }
+    button:hover { background: #1d4ed8; }
+    .result { margin-top: 16px; padding: 14px; background: #eff6ff; border-radius: 12px; }
+    .muted { color: #6b7280; font-size: 14px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Salary Calculator</h1>
+      <p class="muted">Calculate salary after deductions.</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card">
+        <label for="grossSalary">Gross salary</label>
+        <input id="grossSalary" type="number" step="any" placeholder="Example: 5000" />
+        <label for="deductions">Total deductions</label>
+        <input id="deductions" type="number" step="any" placeholder="Example: 700" />
+        <button onclick="calculateSalary()">Calculate</button>
+        <div id="result" class="result" style="display:none;"></div>
+      </section>
+
+      <section class="card">
+        <h2>How it works</h2>
+        <p class="muted">
+          Subtract deductions such as taxes, insurance, or retirement contributions from gross salary to get net salary.
+        </p>
+      </section>
+    </main>
+
+    <footer class="muted">
+      <p>&copy; 2026 CalcTools Hub</p>
+    </footer>
+  </div>
+
+  <script>
+    function calculateSalary() {
+      const grossSalary = parseFloat(document.getElementById('grossSalary').value);
+      const deductions = parseFloat(document.getElementById('deductions').value);
+      const resultDiv = document.getElementById('result');
+
+      if (isNaN(grossSalary) || isNaN(deductions)) {
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = 'Please enter valid numbers.';
+        return;
+      }
+
+      const netSalary = grossSalary - deductions;
+      resultDiv.style.display = 'block';
+      resultDiv.innerHTML = `Net Salary: ${netSalary.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
