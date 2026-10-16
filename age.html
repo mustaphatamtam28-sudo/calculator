@@ -8,9 +8,9 @@
 <body>
   <h1>Age Calculator</h1>
 
-  <p>اختر تاريخ الميلاد:</p>
+  <p>Select your birth date:</p>
   <input type="date" id="dob">
-  <button onclick="calculateAge()">احسب العمر</button>
+  <button onclick="calculateAge()">Calculate Age</button>
 
   <p id="result"></p>
 
@@ -19,8 +19,8 @@
       const dob = new Date(document.getElementById('dob').value);
       const today = new Date();
 
-      if (isNaN(dob)) {
-        document.getElementById('result').innerText = 'من فضلك اختر تاريخًا صحيحًا';
+      if (isNaN(dob.getTime())) {
+        document.getElementById('result').innerText = 'Please select a valid date.';
         return;
       }
 
@@ -31,7 +31,7 @@
         age--;
       }
 
-      document.getElementById('result').innerText = 'عمرك هو: ' + age + ' سنة';
+      document.getElementById('result').innerText = 'Your age is: ' + age + ' years';
     }
   </script>
 </body>
