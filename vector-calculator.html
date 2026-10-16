@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vector Calculator | CalcTools Hub</title>
+  <meta name="description" content="Add and subtract 2D vectors with the Vector Calculator." />
+  <link rel="canonical" href="https://YOUR-USERNAME.github.io/calctools-hub/vector-calculator.html" />
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --border: #dbe3f0;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+    .wrapper { max-width: 1100px; margin: 0 auto; padding: 18px; }
+    header, .card, footer {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    header { padding: 22px; margin-bottom: 18px; }
+    .brand { font-size: 1.7rem; font-weight: 800; color: var(--primary); margin: 0 0 6px; }
+    .subtitle { margin: 0; color: var(--muted); }
+    nav { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; }
+    nav a {
+      text-decoration: none;
+      color: var(--primary);
+      background: #eef4ff;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    main { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .card { padding: 20px; }
+    h1 { margin-top: 0; font-size: 1.8rem; }
+    label { display: block; margin: 14px 0 8px; font-weight: 700; }
+    input, button {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 16px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 800;
+    }
+    button:hover { background: var(--primary-dark); }
+    .result {
+      margin-top: 18px;
+      padding: 16px;
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      line-height: 1.7;
+    }
+    .content p { color: var(--muted); line-height: 1.75; }
+    footer { margin-top: 18px; padding: 16px 20px; text-align: center; color: var(--muted); }
+    @media (max-width: 800px) { main { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <p class="brand">CalcTools Hub</p>
+      <p class="subtitle">Free, simple, and accurate online calculators</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card">
+        <h1>Vector Calculator</h1>
+        <p>Calculate vector addition and subtraction for 2D vectors.</p>
+
+        <label for="x1">Vector 1 X</label>
+        <input type="number" id="x1" placeholder="e.g. 3" />
+
+        <label for="y1">Vector 1 Y</label>
+        <input type="number" id="y1" placeholder="e.g. 4" />
+
+        <label for="x2">Vector 2 X</label>
+        <input type="number" id="x2" placeholder="e.g. 1" />
+
+        <label for="y2">Vector 2 Y</label>
+        <input type="number" id="y2" placeholder="e.g. 2" />
+
+        <button onclick="calculateVectors()">Calculate</button>
+
+        <div class="result" id="result">Enter vector components to see the result.</div>
+      </section>
+
+      <section class="card content">
+        <h2>How it works</h2>
+        <p>Vectors are quantities that have both size and direction. In 2D form, they are often written as coordinates such as (x, y). This calculator helps users add and subtract two vectors quickly, which is useful in geometry, physics, navigation, and basic engineering problems.</p>
+        <p>Enter the x and y components of both vectors, then press calculate. The tool will return the sum and difference in coordinate form so the result is easy to read and use. This makes it helpful for homework, class exercises, and quick checks.</p>
+        <p>CalcTools Hub keeps the interface consistent across tools, so users can move from vector calculations to other math tools without learning a new layout each time. The page is lightweight and works well on mobile devices.</p>
+      </section>
+    </main>
+
+    <footer>© 2026 CalcTools Hub. All rights reserved.</footer>
+  </div>
+
+  <script>
+    function calculateVectors() {
+      const x1 = parseFloat(document.getElementById("x1").value);
+      const y1 = parseFloat(document.getElementById("y1").value);
+      const x2 = parseFloat(document.getElementById("x2").value);
+      const y2 = parseFloat(document.getElementById("y2").value);
+      const result = document.getElementById("result");
+
+      if ([x1, y1, x2, y2].some(v => isNaN(v))) {
+        result.innerHTML = "Please enter all four vector components.";
+        return;
+      }
+
+      const sum = `(${x1 + x2}, ${y1 + y2})`;
+      const diff = `(${x1 - x2}, ${y1 - y2})`;
+
+      result.innerHTML = `
+        <strong>Sum:</strong> ${sum}<br>
+        <strong>Difference:</strong> ${diff}
+      `;
+    }
+  </script>
+</body>
+</html>
