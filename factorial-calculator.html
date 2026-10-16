@@ -1,0 +1,171 @@
+<!-- factorial-calculator.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Factorial Calculator | CalcTools Hub</title>
+  <meta name="description" content="Calculate factorials quickly with this free factorial calculator. Enter a non-negative whole number to get the result instantly." />
+  <meta name="keywords" content="factorial calculator, n factorial, math tool, CalcTools Hub" />
+  <link rel="canonical" href="https://yourusername.github.io/calctools-hub/factorial-calculator.html" />
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --border: #dbe3ef;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary), #1e40af);
+      color: #fff;
+      padding: 28px 16px;
+      text-align: center;
+    }
+    header h1 { margin: 0 0 8px; font-size: 2rem; }
+    header p { margin: 0; color: rgba(255,255,255,0.9); }
+    nav {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      text-align: center;
+    }
+    nav a {
+      color: var(--primary);
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 700;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+    .tool-card, .content-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .tool-card h2, .content-card h2 { margin-top: 0; }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    input, button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 1rem;
+    }
+    input {
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+    button {
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:hover { background: var(--primary-dark); }
+    .result {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      font-weight: 700;
+      word-break: break-word;
+    }
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: #fff;
+    }
+    @media (min-width: 768px) {
+      .tool-card { max-width: 720px; margin-left: auto; margin-right: auto; }
+      .content-card { max-width: 900px; margin-left: auto; margin-right: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CalcTools Hub</h1>
+    <p>Free online factorial calculator for quick math results</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms</a>
+  </nav>
+
+  <main class="container">
+    <section class="tool-card">
+      <h2>Factorial Calculator</h2>
+      <label for="number">Enter a non-negative whole number</label>
+      <input type="number" id="number" min="0" step="1" placeholder="Example: 5" />
+      <button onclick="calculateFactorial()">Calculate</button>
+      <div class="result" id="result">Result will appear here.</div>
+    </section>
+
+    <section class="content-card">
+      <h2>About This Tool</h2>
+      <p>
+        The factorial of a number is written with an exclamation mark, such as 5!, and it means multiplying all whole numbers from that number down to 1. For example, 5! = 5 × 4 × 3 × 2 × 1 = 120. Factorials are widely used in mathematics, statistics, probability, permutations, and combinations. This calculator gives you a fast way to compute factorial values without doing the multiplication manually.
+      </p>
+      <p>
+        Factorials grow very quickly, so even small numbers can produce huge results. That is why factorial calculations are useful in many math problems but can become extremely large after only a few steps. This tool is designed for simple use on mobile and desktop, with a clean layout and instant output. If you are studying combinatorics, algebra, or probability, factorials are one of the most important operations to know.
+      </p>
+      <p>
+        To use the calculator, enter a whole number starting from 0. The result for 0! is 1, which is a standard rule in mathematics. Negative numbers and decimal values are not valid for a basic factorial calculator like this one. If you need related tools, you can also use the combination calculator, permutation formulas, or other math tools available on CalcTools Hub.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 CalcTools Hub. All rights reserved.
+  </footer>
+
+  <script>
+    function calculateFactorial() {
+      const input = document.getElementById("number").value;
+      const result = document.getElementById("result");
+      const n = Number(input);
+
+      if (input === "" || !Number.isInteger(n) || n < 0) {
+        result.textContent = "Please enter a non-negative whole number.";
+        return;
+      }
+
+      let factorial = 1n;
+      for (let i = 2n; i <= BigInt(n); i++) {
+        factorial *= i;
+      }
+
+      result.textContent = `${n}! = ${factorial.toString()}`;
+    }
+  </script>
+</body>
+</html>
