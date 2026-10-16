@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logarithm Calculator | CalcTools Hub</title>
+  <meta name="description" content="Calculate logarithms with any base using the Logarithm Calculator." />
+  <link rel="canonical" href="https://YOUR-USERNAME.github.io/calctools-hub/logarithm-calculator.html" />
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --border: #dbe3f0;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+    .wrapper { max-width: 1100px; margin: 0 auto; padding: 18px; }
+    header, .card, footer {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    header { padding: 22px; margin-bottom: 18px; }
+    .brand { font-size: 1.7rem; font-weight: 800; color: var(--primary); margin: 0 0 6px; }
+    .subtitle { margin: 0; color: var(--muted); }
+    nav { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; }
+    nav a {
+      text-decoration: none;
+      color: var(--primary);
+      background: #eef4ff;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    main { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .card { padding: 20px; }
+    h1 { margin-top: 0; font-size: 1.8rem; }
+    label { display: block; margin: 14px 0 8px; font-weight: 700; }
+    input, button {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 16px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 800;
+    }
+    button:hover { background: var(--primary-dark); }
+    .result {
+      margin-top: 18px;
+      padding: 16px;
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      line-height: 1.7;
+    }
+    .content p { color: var(--muted); line-height: 1.75; }
+    footer { margin-top: 18px; padding: 16px 20px; text-align: center; color: var(--muted); }
+    @media (max-width: 800px) {
+      main { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <p class="brand">CalcTools Hub</p>
+      <p class="subtitle">Free, simple, and accurate online calculators</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card">
+        <h1>Logarithm Calculator</h1>
+        <p>Calculate logarithms with a custom base.</p>
+
+        <label for="number">Number</label>
+        <input type="number" id="number" placeholder="e.g. 100" />
+
+        <label for="base">Base</label>
+        <input type="number" id="base" placeholder="e.g. 10" value="10" />
+
+        <button onclick="calculateLog()">Calculate Logarithm</button>
+
+        <div class="result" id="result">
+          Enter a number and base to see the logarithm.
+        </div>
+      </section>
+
+      <section class="card content">
+        <h2>How it works</h2>
+        <p>A logarithm answers the question: what power of a given base equals a certain number? For example, the logarithm of 100 with base 10 is 2, because 10 squared equals 100. This calculator helps users quickly compute logarithms without doing the math manually.</p>
+        <p>The tool accepts both the value and the base, which makes it useful for schoolwork, science, engineering, finance, and technical tasks. It is especially helpful when you need to compare values across different scales or when working with exponential growth and decay problems.</p>
+        <p>To use the calculator, enter a positive number and a valid base greater than zero and not equal to one. The result will appear instantly. CalcTools Hub keeps the layout clean and consistent, so users can move between related math tools such as exponent, power, and scientific calculators with ease.</p>
+      </section>
+    </main>
+
+    <footer>
+      © 2026 CalcTools Hub. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    function calculateLog() {
+      const number = parseFloat(document.getElementById("number").value);
+      const base = parseFloat(document.getElementById("base").value);
+      const result = document.getElementById("result");
+
+      if (isNaN(number) || isNaN(base) || number <= 0 || base <= 0 || base === 1) {
+        result.innerHTML = "Please enter a positive number and a valid base (not 1).";
+        return;
+      }
+
+      const value = Math.log(number) / Math.log(base);
+      result.innerHTML = `<strong>Logarithm:</strong> ${value.toFixed(6)}`;
+    }
+  </script>
+</body>
+</html>
