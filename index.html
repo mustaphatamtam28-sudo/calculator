@@ -3,78 +3,169 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CalcTools Hub</title>
+  <meta name="description" content="CalcTools Hub - Math Tools category with calculators for BMI, percentage, age, loan, and more." />
+  <title>CalcTools Hub | Math Tools</title>
   <style>
+    * { box-sizing: border-box; }
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background: #f5f7fb;
-      color: #222;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f6f8fb;
+      color: #1f2937;
+      line-height: 1.6;
     }
     header {
-      background: #1e40af;
-      color: white;
-      padding: 30px 20px;
+      background: #0f172a;
+      color: #fff;
+      padding: 24px 16px;
       text-align: center;
     }
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 20px;
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
     }
-    .grid {
+    header p {
+      margin: 0;
+      opacity: 0.9;
+    }
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+    .category-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .category-nav a {
+      text-decoration: none;
+      background: #e2e8f0;
+      color: #0f172a;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .tool-category {
+      background: #fff;
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+    .tool-category h2 {
+      margin-top: 0;
+      color: #0f172a;
+    }
+    .tool-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-top: 20px;
+      gap: 12px;
+      margin-top: 18px;
     }
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    .tool-grid a {
+      display: block;
+      padding: 14px 16px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #111827;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+    .tool-grid a:hover {
+      background: #dbeafe;
+      border-color: #93c5fd;
+      transform: translateY(-1px);
     }
     footer {
       text-align: center;
-      padding: 20px;
-      margin-top: 30px;
-      background: #e5e7eb;
+      padding: 24px 16px;
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.6rem; }
+      .tool-category { padding: 18px; }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>CalcTools Hub</h1>
-    <p>Free online calculators and converters</p>
+    <p>Professional calculators and converters for everyday use</p>
   </header>
 
-  <div class="container">
-    <h2>Categories</h2>
-    <div class="grid">
-      <div class="card">
-  <h3>Math Tools</h3>
-  <p>Simple and scientific calculators.</p>
-  <a href="bmi.html">Open BMI Calculator</a><br>
-  <a href="percentage.html">Open Percentage Calculator</a><br>
-  <a href="age.html">Open Age Calculator</a>
-</div>
+  <main>
+    <nav class="category-nav" aria-label="Main categories">
+      <a href="#math-tools">Math Tools</a>
+      <a href="#health-tools">Health Tools</a>
+      <a href="#finance-tools">Finance Tools</a>
+      <a href="#converters-tools">Converters & Units</a>
+    </nav>
 
+    <section class="tool-category" id="math-tools">
+      <h2>Math Tools</h2>
+      <div class="tool-grid">
+        <a href="bmi.html">BMI Calculator</a>
+        <a href="percentage.html">Percentage Calculator</a>
+        <a href="age.html">Age Calculator</a>
+        <a href="loan.html">Loan Calculator</a>
 
-
-      <div class="card">
-        <h3>Health Tools</h3>
-        <p>BMI, calories, pregnancy, and fitness calculators.</p>
+        <a href="simple-calculator.html">Simple Calculator</a>
+        <a href="scientific-calculator.html">Scientific Calculator</a>
+        <a href="fraction-calculator.html">Fraction Calculator</a>
+        <a href="decimal-to-fraction.html">Decimal to Fraction</a>
+        <a href="fraction-to-decimal.html">Fraction to Decimal</a>
+        <a href="ratio-calculator.html">Ratio Calculator</a>
+        <a href="proportion-calculator.html">Proportion Calculator</a>
+        <a href="average-calculator.html">Average Calculator</a>
+        <a href="median-calculator.html">Median Calculator</a>
+        <a href="mode-calculator.html">Mode Calculator</a>
+        <a href="range-calculator.html">Range Calculator</a>
+        <a href="standard-deviation-calculator.html">Standard Deviation Calculator</a>
+        <a href="variance-calculator.html">Variance Calculator</a>
+        <a href="square-root-calculator.html">Square Root Calculator</a>
+        <a href="cube-root-calculator.html">Cube Root Calculator</a>
+        <a href="exponent-calculator.html">Exponent Calculator</a>
+        <a href="logarithm-calculator.html">Logarithm Calculator</a>
+        <a href="prime-number-checker.html">Prime Number Checker</a>
+        <a href="factorial-calculator.html">Factorial Calculator</a>
+        <a href="permutation-calculator.html">Permutation Calculator</a>
+        <a href="combination-calculator.html">Combination Calculator</a>
+        <a href="gcd-calculator.html">GCD Calculator</a>
+        <a href="lcm-calculator.html">LCM Calculator</a>
+        <a href="rounding-calculator.html">Rounding Calculator</a>
+        <a href="significant-figures-calculator.html">Significant Figures Calculator</a>
+        <a href="remainder-calculator.html">Remainder Calculator</a>
+        <a href="equation-solver.html">Equation Solver</a>
+        <a href="linear-equation-calculator.html">Linear Equation Calculator</a>
+        <a href="quadratic-equation-calculator.html">Quadratic Equation Calculator</a>
+        <a href="polynomial-calculator.html">Polynomial Calculator</a>
+        <a href="matrix-calculator.html">Matrix Calculator</a>
+        <a href="vector-calculator.html">Vector Calculator</a>
+        <a href="sequence-calculator.html">Sequence Calculator</a>
+        <a href="sum-calculator.html">Sum Calculator</a>
+        <a href="product-calculator.html">Product Calculator</a>
+        <a href="unit-rate-calculator.html">Unit Rate Calculator</a>
+        <a href="slope-calculator.html">Slope Calculator</a>
+        <a href="distance-calculator.html">Distance Calculator</a>
+        <a href="midpoint-calculator.html">Midpoint Calculator</a>
+        <a href="triangle-calculator.html">Triangle Calculator</a>
+        <a href="circle-calculator.html">Circle Calculator</a>
+        <a href="rectangle-calculator.html">Rectangle Calculator</a>
+        <a href="trapezoid-calculator.html">Trapezoid Calculator</a>
+        <a href="percentage-change-calculator.html">Percentage Change Calculator</a>
+        <a href="discount-calculator.html">Discount Calculator</a>
+        <a href="markup-calculator.html">Markup Calculator</a>
+        <a href="tip-calculator.html">Tip Calculator</a>
+        <a href="calendar-calculator.html">Calendar Calculator</a>
+        <a href="date-difference-calculator.html">Date Difference Calculator</a>
+        <a href="time-calculator.html">Time Calculator</a>
       </div>
-      <div class="card">
-        <h3>Finance Tools</h3>
-        <p>Loan, tax, interest, and salary calculators.</p>
-      </div>
-      <div class="card">
-        <h3>Converters & Units</h3>
-        <p>Length, weight, temperature, and more.</p>
-      </div>
-    </div>
-  </div>
+    </section>
+  </main>
 
   <footer>
     © 2026 CalcTools Hub
