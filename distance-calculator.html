@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Distance Calculator | CalcTools Hub</title>
+  <meta name="description" content="Calculate the distance between two points with the Distance Calculator." />
+  <link rel="canonical" href="https://YOUR-USERNAME.github.io/calctools-hub/distance-calculator.html" />
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --border: #dbe3f0;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+    .wrapper { max-width: 1100px; margin: 0 auto; padding: 18px; }
+    header, .card, footer {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    header { padding: 22px; margin-bottom: 18px; }
+    .brand { font-size: 1.7rem; font-weight: 800; color: var(--primary); margin: 0 0 6px; }
+    .subtitle { margin: 0; color: var(--muted); }
+    nav { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; }
+    nav a {
+      text-decoration: none;
+      color: var(--primary);
+      background: #eef4ff;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    main { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .card { padding: 20px; }
+    h1 { margin-top: 0; font-size: 1.8rem; }
+    label { display: block; margin: 14px 0 8px; font-weight: 700; }
+    input, button {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 16px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 800;
+    }
+    button:hover { background: var(--primary-dark); }
+    .result {
+      margin-top: 18px;
+      padding: 16px;
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      line-height: 1.7;
+    }
+    .content p { color: var(--muted); line-height: 1.75; }
+    footer { margin-top: 18px; padding: 16px 20px; text-align: center; color: var(--muted); }
+    @media (max-width: 800px) { main { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <p class="brand">CalcTools Hub</p>
+      <p class="subtitle">Free, simple, and accurate online calculators</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card">
+        <h1>Distance Calculator</h1>
+        <p>Calculate the distance between two points in 2D space.</p>
+
+        <label for="x1">Point 1 X</label>
+        <input type="number" id="x1" placeholder="e.g. 1" />
+
+        <label for="y1">Point 1 Y</label>
+        <input type="number" id="y1" placeholder="e.g. 2" />
+
+        <label for="x2">Point 2 X</label>
+        <input type="number" id="x2" placeholder="e.g. 4" />
+
+        <label for="y2">Point 2 Y</label>
+        <input type="number" id="y2" placeholder="e.g. 6" />
+
+        <button onclick="calculateDistance()">Calculate Distance</button>
+
+        <div class="result" id="result">Enter coordinates to see the distance.</div>
+      </section>
+
+      <section class="card content">
+        <h2>How it works</h2>
+        <p>This calculator uses the distance formula to measure the straight-line distance between two points on a plane. It is useful in geometry, mapping, design, physics, and any situation where you need to compare positions or measure separation in two dimensions.</p>
+        <p>Enter the x and y values for both points, then click calculate. The tool will return the exact distance between them. This makes it easy to verify homework answers, explore coordinate geometry, or work on planning tasks.</p>
+        <p>CalcTools Hub keeps the page layout simple and consistent, so users can switch between related tools like midpoint, slope, and triangle calculators without confusion. The interface is optimized for quick use on mobile devices.</p>
+      </section>
+    </main>
+
+    <footer>© 2026 CalcTools Hub. All rights reserved.</footer>
+  </div>
+
+  <script>
+    function calculateDistance() {
+      const x1 = parseFloat(document.getElementById("x1").value);
+      const y1 = parseFloat(document.getElementById("y1").value);
+      const x2 = parseFloat(document.getElementById("x2").value);
+      const y2 = parseFloat(document.getElementById("y2").value);
+      const result = document.getElementById("result");
+
+      if ([x1, y1, x2, y2].some(v => isNaN(v))) {
+        result.innerHTML = "Please enter all four coordinates.";
+        return;
+      }
+
+      const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+      result.innerHTML = `<strong>Distance:</strong> ${distance.toFixed(6)}`;
+    }
+  </script>
+</body>
+</html>
