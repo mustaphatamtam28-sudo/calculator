@@ -1,0 +1,203 @@
+<!-- trapezoid-calculator.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trapezoid Calculator | CalcTools Hub</title>
+  <meta name="description" content="Calculate trapezoid area and perimeter with this free trapezoid calculator. Easy to use and optimized for mobile." />
+  <meta name="keywords" content="trapezoid calculator, trapezium calculator, area calculator, CalcTools Hub" />
+  <link rel="canonical" href="https://yourusername.github.io/calctools-hub/trapezoid-calculator.html" />
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --border: #dbe3ef;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary), #1e40af);
+      color: #fff;
+      padding: 28px 16px;
+      text-align: center;
+    }
+    nav {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      text-align: center;
+    }
+    nav a {
+      color: var(--primary);
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 700;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+    .tool-card, .content-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 1rem;
+    }
+    input, select {
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
+      background: #fff;
+    }
+    button {
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:hover { background: var(--primary-dark); }
+    .result {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      font-weight: 700;
+      white-space: pre-wrap;
+    }
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: #fff;
+    }
+    @media (min-width: 768px) {
+      .tool-card { max-width: 760px; margin-left: auto; margin-right: auto; }
+      .content-card { max-width: 900px; margin-left: auto; margin-right: auto; }
+      .grid { grid-template-columns: repeat(4, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CalcTools Hub</h1>
+    <p>Free online trapezoid calculator for geometry problems</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms</a>
+  </nav>
+
+  <main class="container">
+    <section class="tool-card">
+      <h2>Trapezoid Calculator</h2>
+      <label for="mode">Calculate</label>
+      <select id="mode">
+        <option value="area">Area</option>
+        <option value="perimeter">Perimeter</option>
+      </select>
+
+      <div class="grid">
+        <div>
+          <label for="a">Base 1</label>
+          <input type="number" id="a" placeholder="10" />
+        </div>
+        <div>
+          <label for="b">Base 2</label>
+          <input type="number" id="b" placeholder="6" />
+        </div>
+        <div>
+          <label for="c">Side 1 / Height</label>
+          <input type="number" id="c" placeholder="4" />
+        </div>
+        <div>
+          <label for="d">Side 2</label>
+          <input type="number" id="d" placeholder="5" />
+        </div>
+      </div>
+
+      <button onclick="calculateTrapezoid()">Calculate</button>
+      <div class="result" id="result">Result will appear here.</div>
+    </section>
+
+    <section class="content-card">
+      <h2>About This Tool</h2>
+      <p>
+        A trapezoid is a four-sided shape with one pair of parallel sides. It is often used in geometry, construction, and design calculations. This tool helps you calculate either the area or the perimeter of a trapezoid using a clean and simple interface that works well on mobile devices.
+      </p>
+      <p>
+        For area, enter the two bases and the height. The formula is area = (base1 + base2) ÷ 2 × height. For perimeter, enter all four side lengths and add them together. If you are studying geometry or solving practical measurement problems, this calculator gives you a quick result without extra steps.
+      </p>
+      <p>
+        The layout matches the rest of CalcTools Hub, keeping the site consistent and easy to navigate. This makes it simple to move between different math tools while keeping the experience fast and organized. It is useful for students, teachers, and anyone who needs a quick trapezoid calculation.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 CalcTools Hub. All rights reserved.
+  </footer>
+
+  <script>
+    function calculateTrapezoid() {
+      const mode = document.getElementById("mode").value;
+      const a = parseFloat(document.getElementById("a").value);
+      const b = parseFloat(document.getElementById("b").value);
+      const c = parseFloat(document.getElementById("c").value);
+      const d = parseFloat(document.getElementById("d").value);
+      const result = document.getElementById("result");
+
+      if (mode === "area") {
+        if (isNaN(a) || isNaN(b) || isNaN(c)) {
+          result.textContent = "Please enter both bases and the height.";
+          return;
+        }
+        result.textContent = `Area = ${((a + b) / 2) * c}`;
+      } else {
+        if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d)) {
+          result.textContent = "Please enter all four sides.";
+          return;
+        }
+        result.textContent = `Perimeter = ${a + b + c + d}`;
+      }
+    }
+  </script>
+</body>
+</html>
