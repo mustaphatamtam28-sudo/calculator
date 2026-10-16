@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tax Calculator | CalcTools Hub</title>
+  <meta name="description" content="Calculate tax amount and final price or income with this free online tax calculator." />
+  <meta name="keywords" content="tax calculator, sales tax calculator, income tax calculator" />
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f5f7fb; color: #1f2937; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    header, footer { text-align: center; padding: 20px 0; }
+    nav a { color: #2563eb; text-decoration: none; margin: 0 10px; }
+    .card { background: #fff; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,.08); padding: 20px; margin-bottom: 20px; }
+    label { display: block; margin: 12px 0 8px; font-weight: 700; }
+    input, button, select {
+      width: 100%; box-sizing: border-box; padding: 12px 14px; border-radius: 12px;
+      border: 1px solid #d1d5db; font-size: 16px;
+    }
+    button { background: #2563eb; color: #fff; border: 0; cursor: pointer; margin-top: 14px; }
+    button:hover { background: #1d4ed8; }
+    .result { margin-top: 16px; padding: 14px; background: #eff6ff; border-radius: 12px; }
+    .muted { color: #6b7280; font-size: 14px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Tax Calculator</h1>
+      <p class="muted">Calculate tax amount and final total.</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card">
+        <label for="amount">Amount</label>
+        <input id="amount" type="number" step="any" placeholder="Example: 200" />
+        <label for="taxRate">Tax rate (%)</label>
+        <input id="taxRate" type="number" step="any" placeholder="Example: 10" />
+        <button onclick="calculateTax()">Calculate</button>
+        <div id="result" class="result" style="display:none;"></div>
+      </section>
+
+      <section class="card">
+        <h2>How it works</h2>
+        <p class="muted">
+          Enter a base amount and a tax rate to calculate the tax amount and total after tax.
+        </p>
+      </section>
+    </main>
+
+    <footer class="muted">
+      <p>&copy; 2026 CalcTools Hub</p>
+    </footer>
+  </div>
+
+  <script>
+    function calculateTax() {
+      const amount = parseFloat(document.getElementById('amount').value);
+      const taxRate = parseFloat(document.getElementById('taxRate').value);
+      const resultDiv = document.getElementById('result');
+
+      if (isNaN(amount) || isNaN(taxRate)) {
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = 'Please enter valid numbers.';
+        return;
+      }
+
+      const tax = amount * (taxRate / 100);
+      const total = amount + tax;
+
+      resultDiv.style.display = 'block';
+      resultDiv.innerHTML = `Tax Amount: ${tax.toFixed(2)}<br>Total After Tax: ${total.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
