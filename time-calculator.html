@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time Calculator | CalcTools Hub</title>
+  <meta name="description" content="Calculate time differences, add or subtract time, and convert between time units with this easy time calculator." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html">CalcTools Hub</a>
+      <nav class="top-nav">
+        <a href="index.html">Home</a>
+        <a href="math-tools.html">Math Tools</a>
+        <a href="health-tools.html">Health Tools</a>
+        <a href="finance-tools.html">Finance Tools</a>
+        <a href="converters.html">Converters</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero-card">
+      <h1>Time Calculator</h1>
+      <p>Calculate time differences, add time values, or convert between hours, minutes, and seconds quickly and accurately.</p>
+    </section>
+
+    <section class="tool-card">
+      <h2>Calculate Time</h2>
+
+      <div class="input-grid">
+        <div class="input-group">
+          <label for="hours1">Hours</label>
+          <input type="number" id="hours1" min="0" placeholder="0" />
+        </div>
+
+        <div class="input-group">
+          <label for="minutes1">Minutes</label>
+          <input type="number" id="minutes1" min="0" placeholder="0" />
+        </div>
+
+        <div class="input-group">
+          <label for="seconds1">Seconds</label>
+          <input type="number" id="seconds1" min="0" placeholder="0" />
+        </div>
+
+        <div class="input-group">
+          <label for="operation">Operation</label>
+          <select id="operation">
+            <option value="add">Add Time</option>
+            <option value="subtract">Subtract Time</option>
+            <option value="toSeconds">Convert to Seconds</option>
+            <option value="toMinutes">Convert to Minutes</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="hours2">Hours (Second Value)</label>
+          <input type="number" id="hours2" min="0" placeholder="0" />
+        </div>
+
+        <div class="input-group">
+          <label for="minutes2">Minutes (Second Value)</label>
+          <input type="number" id="minutes2" min="0" placeholder="0" />
+        </div>
+
+        <div class="input-group">
+          <label for="seconds2">Seconds (Second Value)</label>
+          <input type="number" id="seconds2" min="0" placeholder="0" />
+        </div>
+      </div>
+
+      <button class="calc-button" onclick="calculateTime()">Calculate</button>
+
+      <div class="result-box" id="result">Your result will appear here.</div>
+    </section>
+
+    <section class="tool-card">
+      <h2>About This Tool</h2>
+      <p>The Time Calculator helps you work with everyday time values in a simple format. Whether you need to add a workout duration, subtract a meeting length, or convert a time span into total seconds, this tool gives you a quick answer without manual arithmetic.</p>
+      <p>It is useful for scheduling, studying, project planning, travel timing, and any task where time values need to be combined or converted. Enter your values, choose an operation, and view the result instantly.</p>
+      <p>For best results, use whole numbers in the hour, minute, and second fields. Minutes and seconds are normalized automatically when adding or subtracting time.</p>
+    </section>
+
+    <section class="tool-card">
+      <h2>How to Use</h2>
+      <ol>
+        <li>Enter the first time value in hours, minutes, and seconds.</li>
+        <li>If needed, enter the second time value.</li>
+        <li>Select the operation you want to perform.</li>
+        <li>Click Calculate to see the result.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 CalcTools Hub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toSeconds(h, m, s) {
+      return (Number(h) || 0) * 3600 + (Number(m) || 0) * 60 + (Number(s) || 0);
+    }
+
+    function formatTime(totalSeconds) {
+      const sign = totalSeconds < 0 ? "-" : "";
+      totalSeconds = Math.abs(totalSeconds);
+
+      const h = Math.floor(totalSeconds / 3600);
+      const m = Math.floor((totalSeconds % 3600) / 60);
+      const s = totalSeconds % 60;
+
+      return `${sign}${h}h ${m}m ${s}s`;
+    }
+
+    function calculateTime() {
+      const h1 = document.getElementById("hours1").value;
+      const m1 = document.getElementById("minutes1").value;
+      const s1 = document.getElementById("seconds1").value;
+
+      const h2 = document.getElementById("hours2").value;
+      const m2 = document.getElementById("minutes2").value;
+      const s2 = document.getElementById("seconds2").value;
+
+      const operation = document.getElementById("operation").value;
+      const resultBox = document.getElementById("result");
+
+      const time1 = toSeconds(h1, m1, s1);
+      const time2 = toSeconds(h2, m2, s2);
+
+      let result = "";
+
+      if (operation === "add") {
+        result = formatTime(time1 + time2);
+      } else if (operation === "subtract") {
+        result = formatTime(time1 - time2);
+      } else if (operation === "toSeconds") {
+        result = `${time1} seconds`;
+      } else if (operation === "toMinutes") {
+        result = `${(time1 / 60).toFixed(2)} minutes`;
+      }
+
+      resultBox.textContent = `Result: ${result}`;
+    }
+  </script>
+</body>
+</html>
