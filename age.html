@@ -4,15 +4,56 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Age Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      margin: 0;
+      padding: 20px;
+    }
+    .box {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    button {
+      background: #1e40af;
+      color: white;
+      border: none;
+    }
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    a {
+      text-decoration: none;
+      color: #1e40af;
+    }
+  </style>
 </head>
 <body>
-  <h1>Age Calculator</h1>
+  <div class="box">
+    <h1>Age Calculator</h1>
+    <p><a href="index.html">Back to Home</a></p>
 
-  <p>Select your birth date:</p>
-  <input type="date" id="dob">
-  <button onclick="calculateAge()">Calculate Age</button>
+    <input type="date" id="dob">
+    <button onclick="calculateAge()">Calculate Age</button>
 
-  <p id="result"></p>
+    <div class="result" id="result"></div>
+  </div>
 
   <script>
     function calculateAge() {
@@ -25,13 +66,13 @@
       }
 
       let age = today.getFullYear() - dob.getFullYear();
-      const month = today.getMonth() - dob.getMonth();
+      const m = today.getMonth() - dob.getMonth();
 
-      if (month < 0 || (month === 0 && today.getDate() < dob.getDate())) {
+      if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
         age--;
       }
 
-      document.getElementById('result').innerText = 'Your age is: ' + age + ' years';
+      document.getElementById('result').innerText = `Your age is ${age} years.`;
     }
   </script>
 </body>
