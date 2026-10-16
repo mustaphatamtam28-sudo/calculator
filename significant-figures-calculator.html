@@ -1,0 +1,214 @@
+<!-- significant-figures-calculator.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Significant Figures Calculator | CalcTools Hub</title>
+  <meta name="description" content="Count the significant figures in any number with this free significant figures calculator. Fast, accurate, and easy to use." />
+  <meta name="keywords" content="significant figures calculator, sig figs calculator, math tool, CalcTools Hub" />
+  <link rel="canonical" href="https://yourusername.github.io/calctools-hub/significant-figures-calculator.html" />
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --border: #dbe3ef;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary), #1e40af);
+      color: #fff;
+      padding: 28px 16px;
+      text-align: center;
+    }
+    header h1 { margin: 0 0 8px; font-size: 2rem; }
+    header p { margin: 0; color: rgba(255,255,255,0.9); }
+    nav {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      text-align: center;
+    }
+    nav a {
+      color: var(--primary);
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 700;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+    .tool-card, .content-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .tool-card h2, .content-card h2 { margin-top: 0; }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    input, button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 1rem;
+    }
+    input {
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+    button {
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:hover { background: var(--primary-dark); }
+    .result {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      font-weight: 700;
+    }
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: #fff;
+    }
+    @media (min-width: 768px) {
+      .tool-card { max-width: 720px; margin-left: auto; margin-right: auto; }
+      .content-card { max-width: 900px; margin-left: auto; margin-right: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CalcTools Hub</h1>
+    <p>Free online significant figures calculator for quick counting</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms</a>
+  </nav>
+
+  <main class="container">
+    <section class="tool-card">
+      <h2>Significant Figures Calculator</h2>
+      <label for="number">Enter a number</label>
+      <input type="text" id="number" placeholder="Example: 0.00450" />
+      <button onclick="countSigFigs()">Count Significant Figures</button>
+      <div class="result" id="result">Result will appear here.</div>
+    </section>
+
+    <section class="content-card">
+      <h2>About This Tool</h2>
+      <p>
+        Significant figures show how precise a measured or written number is. They help identify which digits matter when reporting values in science and math. This calculator counts the significant figures in a number entered as text, making it easy to check homework, lab work, and classroom problems without guessing.
+      </p>
+      <p>
+        Rules for significant figures can be tricky because zeros may or may not count depending on where they appear. Leading zeros are not significant, trailing zeros after a decimal usually are, and zeros between nonzero digits are significant. Because of these rules, a value like 0.00450 has three significant figures, while 1200 may have different interpretations depending on whether it is written with a decimal or in scientific notation.
+      </p>
+      <p>
+        Use this calculator when you need a quick answer for chemistry, physics, engineering, or general measurement problems. Type the number exactly as shown, then click the button to count the significant figures. If you work with scientific notation often, this tool can save time and help keep your answers consistent with standard math conventions.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 CalcTools Hub. All rights reserved.
+  </footer>
+
+  <script>
+    function countSigFigs() {
+      const input = document.getElementById("number").value.trim();
+      const result = document.getElementById("result");
+
+      if (!input) {
+        result.textContent = "Please enter a number.";
+        return;
+      }
+
+      let value = input.toLowerCase().replace(/[,\s]/g, "");
+
+      if (value[0] === "+") value = value.slice(1);
+
+      if (/^0+(\.0+)?$/.test(value)) {
+        result.textContent = "1 significant figure";
+        return;
+      }
+
+      if (value.includes("e")) {
+        value = value.split("e")[0];
+      }
+
+      let sig = value.replace(/^0+/, "");
+
+      if (sig.includes(".")) {
+        sig = sig.replace(".", "");
+        sig = sig.replace(/^0+/, "");
+      }
+
+      if (sig.includes(".")) {
+        sig = sig.replace(".", "");
+      }
+
+      if (/\./.test(input)) {
+        sig = value.replace(/^0+/, "").replace(".", "");
+        result.textContent = `${countDigitsWithRules(value)} significant figures`;
+        return;
+      }
+
+      const noDecimal = value.replace(/^-/, "");
+      const digitsOnly = noDecimal.replace(/^0+/, "");
+      const trailingRemoved = digitsOnly.replace(/0+$/, "");
+
+      if (trailingRemoved.length === 0) {
+        result.textContent = "1 significant figure";
+        return;
+      }
+
+      result.textContent = `${trailingRemoved.length} significant figure${trailingRemoved.length === 1 ? "" : "s"}`;
+    }
+
+    function countDigitsWithRules(value) {
+      let num = value;
+      if (num.includes("e")) num = num.split("e")[0];
+      const parts = num.split(".");
+      const whole = parts[0].replace(/^0+/, "");
+      const decimal = parts[1] || "";
+      const combined = (whole + decimal).replace(/^0+/, "");
+      if (combined.length === 0) return 1;
+      return combined.length;
+    }
+  </script>
+</body>
+</html>
