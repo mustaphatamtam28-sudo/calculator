@@ -1,0 +1,191 @@
+<!-- linear-equation-calculator.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linear Equation Calculator | CalcTools Hub</title>
+  <meta name="description" content="Solve linear equations quickly with this free linear equation calculator. Enter coefficients and get the solution instantly." />
+  <meta name="keywords" content="linear equation calculator, equation solver, math tool, CalcTools Hub" />
+  <link rel="canonical" href="https://yourusername.github.io/calctools-hub/linear-equation-calculator.html" />
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --border: #dbe3ef;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary), #1e40af);
+      color: #fff;
+      padding: 28px 16px;
+      text-align: center;
+    }
+    header h1 { margin: 0 0 8px; font-size: 2rem; }
+    header p { margin: 0; color: rgba(255,255,255,0.9); }
+    nav {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      text-align: center;
+    }
+    nav a {
+      color: var(--primary);
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 700;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+    .tool-card, .content-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .tool-card h2, .content-card h2 { margin-top: 0; }
+    .grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    input, button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 1rem;
+    }
+    input {
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+    button {
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:hover { background: var(--primary-dark); }
+    .result {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      font-weight: 700;
+    }
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: #fff;
+    }
+    @media (min-width: 768px) {
+      .tool-card { max-width: 720px; margin-left: auto; margin-right: auto; }
+      .content-card { max-width: 900px; margin-left: auto; margin-right: auto; }
+      .grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CalcTools Hub</h1>
+    <p>Free online linear equation calculator for quick solutions</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms</a>
+  </nav>
+
+  <main class="container">
+    <section class="tool-card">
+      <h2>Linear Equation Calculator</h2>
+      <div class="grid">
+        <div>
+          <label for="a">a</label>
+          <input type="number" id="a" placeholder="2" />
+        </div>
+        <div>
+          <label for="b">b</label>
+          <input type="number" id="b" placeholder="3" />
+        </div>
+        <div>
+          <label for="c">c</label>
+          <input type="number" id="c" placeholder="11" />
+        </div>
+      </div>
+      <p>Solve: ax + b = c</p>
+      <button onclick="solveEquation()">Calculate</button>
+      <div class="result" id="result">Result will appear here.</div>
+    </section>
+
+    <section class="content-card">
+      <h2>About This Tool</h2>
+      <p>
+        A linear equation is one of the simplest types of algebraic equations. It describes a straight-line relationship between variables and usually has the form ax + b = c. This calculator solves for x when you enter the values of a, b, and c. It is useful for students, teachers, and anyone who needs a fast algebra check.
+      </p>
+      <p>
+        Linear equations appear in many everyday math situations, including budgeting, pricing, distance calculations, and basic science formulas. Solving them by hand is easy once you know the process, but a calculator helps you confirm your work quickly. If a equals zero, the equation is no longer a standard linear equation, so the tool will alert you to that case.
+      </p>
+      <p>
+        Use this tool by entering the coefficient values and pressing calculate. The result will show the value of x, or explain when the equation has no unique solution. This page is designed with a clean, consistent layout so it works well on mobile devices and fits the style of the rest of CalcTools Hub.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 CalcTools Hub. All rights reserved.
+  </footer>
+
+  <script>
+    function solveEquation() {
+      const a = parseFloat(document.getElementById("a").value);
+      const b = parseFloat(document.getElementById("b").value);
+      const c = parseFloat(document.getElementById("c").value);
+      const result = document.getElementById("result");
+
+      if (isNaN(a) || isNaN(b) || isNaN(c)) {
+        result.textContent = "Please enter all coefficients.";
+        return;
+      }
+
+      if (a === 0) {
+        result.textContent = b === c ? "Infinite solutions." : "No solution.";
+        return;
+      }
+
+      const x = (c - b) / a;
+      result.textContent = `x = ${x}`;
+    }
+  </script>
+</body>
+</html>
