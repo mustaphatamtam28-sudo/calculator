@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Calculate standard deviation quickly with this simple, mobile-friendly calculator for sample and population data." />
+  <meta name="robots" content="index,follow" />
+  <title>Standard Deviation Calculator | CalcTools Hub</title>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --primary:#2563eb;
+      --primary-dark:#1d4ed8;
+      --border:#dbe4f0;
+      --success:#0f766e;
+      --shadow:0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    .site-header{background:linear-gradient(135deg,#0f172a,#1e3a8a);color:#fff;padding:20px 16px}
+    .site-header .wrap,.site-footer .wrap,main .wrap{max-width:1100px;margin:0 auto}
+    .brand{font-size:1.35rem;font-weight:700;margin:0}
+    .tagline{margin:6px 0 0;color:#dbeafe;font-size:.95rem}
+    .crumbs{margin-top:10px;font-size:.92rem;color:#bfdbfe}
+    .crumbs a{color:#fff;text-decoration:none}
+    main{padding:24px 16px 40px}
+    .layout{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));align-items:start}
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+    h1{margin:0 0 10px;font-size:1.8rem;line-height:1.2}
+    p{margin:0 0 14px}
+    label{display:block;margin:12px 0 6px;font-weight:700;font-size:.95rem}
+    textarea{width:100%;min-height:140px;padding:14px 12px;border:1px solid var(--border);border-radius:12px;font-size:1rem;outline:none;resize:vertical}
+    textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    button{border:0;border-radius:12px;padding:13px 16px;font-size:1rem;cursor:pointer;font-weight:700}
+    .primary{background:var(--primary);color:#fff}
+    .primary:hover{background:var(--primary-dark)}
+    .secondary{background:#e5eefc;color:#1e3a8a}
+    .result{margin-top:18px;padding:16px;border-radius:14px;background:#f8fbff;border:1px solid #d9e7ff}
+    .result strong{color:var(--success)}
+    .meta{color:var(--muted);font-size:.95rem}
+    .content h2{font-size:1.25rem;margin:0 0 10px}
+    .content ul{margin:10px 0 0;padding-left:18px}
+    .content li{margin-bottom:8px}
+    .note{font-size:.92rem;color:var(--muted);margin-top:12px}
+    .site-footer{padding:18px 16px 28px;color:var(--muted);text-align:center;font-size:.92rem}
+    .links a{color:var(--primary);text-decoration:none;margin:0 8px}
+    @media (max-width:640px){h1{font-size:1.55rem}.panel{padding:16px}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <p class="brand">CalcTools Hub</p>
+      <p class="tagline">Free, simple, and mobile-friendly calculators for everyday use.</p>
+      <div class="crumbs"><a href="index.html">Home</a> / Standard Deviation Calculator</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap layout">
+      <section class="panel">
+        <h1>Standard Deviation Calculator</h1>
+        <p class="meta">Enter numbers separated by commas to calculate sample or population standard deviation.</p>
+
+        <label for="dataInput">Data Set</label>
+        <textarea id="dataInput" placeholder="Example: 10, 12, 15, 18, 20"></textarea>
+
+        <label for="modeType">Type</label>
+        <input id="modeType" type="text" value="Sample" readonly />
+
+        <div class="btns">
+          <button class="primary" onclick="calculateSD()">Calculate</button>
+          <button class="secondary" onclick="resetSD()">Reset</button>
+        </div>
+
+        <div class="result" id="resultBox">
+          <strong>Result:</strong>
+          <div id="resultText">Enter a list of numbers to see the standard deviation.</div>
+        </div>
+      </section>
+
+      <section class="panel content">
+        <h2>How to Use</h2>
+        <p>Type your values separated by commas. This calculator will show the mean and standard deviation for the sample data.</p>
+        <ul>
+          <li>Sample standard deviation uses \(n - 1\)</li>
+          <li>Population standard deviation uses \(n\)</li>
+          <li>Useful for statistics, research, and data analysis</li>
+        </ul>
+        <div class="note">
+          Tip: Keep your values numeric only. Extra spaces are allowed.
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <p>© 2026 CalcTools Hub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function calculateSD() {
+      const input = document.getElementById('dataInput').value.trim();
+      if (!input) {
+        document.getElementById('resultText').textContent = 'Please enter a list of numbers.';
+        return;
+      }
+
+      const values = input.split(',').map(n => parseFloat(n.trim())).filter(n => !isNaN(n));
+      if (values.length === 0) {
+        document.getElementById('resultText').textContent = 'Please enter valid numeric values.';
+        return;
+      }
+
+      const sum = values.reduce((a, b) => a + b, 0);
+      const mean = sum / values.length;
+      const variance = values.reduce((acc, val) => acc + Math.pow(val - mean, 2), 0) / (values.length - 1 || 1);
+      const sd = Math.sqrt(variance);
+
+      document.getElementById('resultText').innerHTML =
+        `Mean: <strong>${mean.toFixed(4)}</strong><br>` +
+        `Sample Standard Deviation: <strong>${sd.toFixed(4)}</strong>`;
+    }
+
+    function resetSD() {
+      document.getElementById('dataInput').value = '';
+      document.getElementById('resultText').textContent = 'Enter a list of numbers to see the standard deviation.';
+    }
+  </script>
+</body>
+</html>
