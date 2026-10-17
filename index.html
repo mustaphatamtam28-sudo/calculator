@@ -4,229 +4,282 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CalcTools Hub | Free Online Calculators</title>
-  <meta name="description" content="CalcTools Hub offers free online calculators for math, health, finance, and unit conversions with a clean mobile-friendly design." />
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Free online calculators for math, health, finance, and converters." />
   <style>
-    .homepage-hero {
-      background: linear-gradient(135deg, #0f4c81, #1e73be);
-      color: #fff;
-      padding: 28px 16px;
-      border-radius: 16px;
-      margin: 18px 0;
-      text-align: center;
+    * {
+      box-sizing: border-box;
     }
 
-    .homepage-hero h1 {
-      margin: 0 0 10px;
-      font-size: 2rem;
-    }
-
-    .homepage-hero p {
+    body {
       margin: 0;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    .search-bar {
-      display: flex;
-      gap: 10px;
-      margin: 18px 0 24px;
-      flex-wrap: wrap;
-    }
-
-    .search-bar input {
-      flex: 1;
-      min-width: 220px;
-      padding: 14px 16px;
-      border: 1px solid #d6dce5;
-      border-radius: 12px;
-      font-size: 16px;
-    }
-
-    .search-bar button {
-      padding: 14px 18px;
-      border: none;
-      border-radius: 12px;
-      background: #1e73be;
-      color: #fff;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .section-title {
-      margin: 28px 0 14px;
-      font-size: 1.4rem;
-      color: #17324d;
-    }
-
-    .tool-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 14px;
-    }
-
-    .tool-card-link {
-      display: block;
+      font-family: Arial, Helvetica, sans-serif;
       background: #fff;
-      border: 1px solid #e5eaf0;
-      border-radius: 14px;
-      padding: 16px;
-      text-decoration: none;
-      color: #17324d;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      color: #222;
     }
 
-    .tool-card-link:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    .topbar {
+      background: #123f73;
+      color: #fff;
+      padding: 6px 10px;
+      font-size: 13px;
+      font-weight: 700;
     }
 
-    .tool-card-link h3 {
-      margin: 0 0 8px;
-      font-size: 1rem;
-      line-height: 1.3;
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 10px;
     }
 
-    .tool-card-link p {
-      margin: 0;
-      font-size: 0.88rem;
-      line-height: 1.5;
-      color: #5b6b7c;
+    .header-wrap {
+      background: #d8e3f1;
+      padding: 10px;
+      border-bottom: 1px solid #b8c7d8;
     }
 
-    .intro-text {
-      background: #f7f9fc;
-      border-radius: 14px;
-      padding: 18px;
-      line-height: 1.7;
-      color: #405264;
-    }
-
-    .page-footer-links {
+    .header-row {
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
       gap: 12px;
-      justify-content: center;
-      margin-top: 12px;
+      flex-wrap: wrap;
     }
 
-    .page-footer-links a {
-      color: #1e73be;
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: #123f73;
       text-decoration: none;
-      font-weight: 600;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .search-box input {
+      width: 220px;
+      max-width: 100%;
+      padding: 7px 10px;
+      border: 1px solid #9db0c4;
+      border-radius: 2px;
+      font-size: 14px;
+    }
+
+    .search-box button {
+      padding: 7px 12px;
+      border: 1px solid #7d92a6;
+      background: #f5f7fa;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .banner {
+      padding: 14px 0;
+      background: #eef3f8;
+    }
+
+    .banner img {
+      width: 100%;
+      display: block;
+      border: 1px solid #c9d4e0;
+      max-height: 180px;
+      object-fit: cover;
+    }
+
+    .section-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      padding: 24px 0 14px;
+    }
+
+    .section-col img {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      display: block;
+      margin-bottom: 10px;
+      object-fit: cover;
+    }
+
+    .section-col h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      color: #123f73;
+    }
+
+    .section-col a {
+      display: block;
+      color: #1f4d77;
+      text-decoration: none;
+      font-size: 13px;
+      line-height: 1.65;
+      margin-bottom: 2px;
+    }
+
+    .section-col a:hover {
+      text-decoration: underline;
+    }
+
+    .middle-btn {
+      text-align: center;
+      padding: 18px 0 24px;
+    }
+
+    .middle-btn a {
+      display: inline-block;
+      background: #5f8f35;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 2px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .gray-box {
+      background: #ededed;
+      padding: 16px 12px;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #444;
+      margin-bottom: 18px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+      padding: 10px 0 22px;
+    }
+
+    @media (max-width: 900px) {
+      .section-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-box {
+        width: 100%;
+      }
+
+      .search-box input {
+        width: 100%;
+        flex: 1;
+      }
+
+      .section-row {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
+  <div class="topbar">CalcTools Hub</div>
+
+  <div class="header-wrap">
     <div class="container">
-      <a class="logo" href="index.html">CalcTools Hub</a>
-      <nav class="top-nav">
-        <a href="index.html">Home</a>
-        <a href="#math-tools">Math</a>
-        <a href="#health-tools">Health</a>
-        <a href="#finance-tools">Finance</a>
-        <a href="#converters-tools">Converters</a>
-      </nav>
+      <div class="header-row">
+        <a class="logo" href="index.html">CalcTools Hub</a>
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Free Online Calculators" />
+          <button onclick="searchTools()">Search</button>
+        </div>
+      </div>
     </div>
-  </header>
+  </div>
 
-  <main class="container">
-    <section class="homepage-hero">
-      <h1>Free Online Calculators</h1>
-      <p>Simple, fast, and professional tools for math, health, finance, and conversions.</p>
-    </section>
-
-    <div class="search-bar">
-      <input type="text" id="toolSearch" placeholder="Search for a calculator..." onkeyup="filterTools()" />
-      <button onclick="filterTools()">Search</button>
-    </div>
-
-    <section class="intro-text">
-      <p>Welcome to CalcTools Hub, a growing collection of practical calculators designed for everyday use. Each tool is built with a clean interface, mobile-friendly layout, and easy input fields so visitors can find what they need quickly. Browse the categories below to access the calculator you want.</p>
-    </section>
-
-    <section id="math-tools">
-      <h2 class="section-title">Math Tools</h2>
-      <div class="tool-grid">
-        <a class="tool-card-link" href="simple-calculator.html"><h3>Simple Calculator</h3><p>Basic arithmetic for quick everyday calculations.</p></a>
-        <a class="tool-card-link" href="scientific-calculator.html"><h3>Scientific Calculator</h3><p>Advanced functions for technical and academic work.</p></a>
-        <a class="tool-card-link" href="percentage.html"><h3>Percentage Calculator</h3><p>Find percentages, changes, and values instantly.</p></a>
-        <a class="tool-card-link" href="fraction-calculator.html"><h3>Fraction Calculator</h3><p>Work with fractions in a clear, simple format.</p></a>
-        <a class="tool-card-link" href="quadratic-equation.html"><h3>Quadratic Equation</h3><p>Solve quadratic equations and find roots.</p></a>
-        <a class="tool-card-link" href="factorial-calculator.html"><h3>Factorial Calculator</h3><p>Calculate factorial values for numbers.</p></a>
-        <a class="tool-card-link" href="average-calculator.html"><h3>Average Calculator</h3><p>Compute the mean of a group of values.</p></a>
-        <a class="tool-card-link" href="median-calculator.html"><h3>Median Calculator</h3><p>Find the middle value in a data set.</p></a>
-      </div>
-    </section>
-
-    <section id="health-tools">
-      <h2 class="section-title">Health Tools</h2>
-      <div class="tool-grid">
-        <a class="tool-card-link" href="bmi.html"><h3>BMI Calculator</h3><p>Check body mass index based on height and weight.</p></a>
-        <a class="tool-card-link" href="age.html"><h3>Age Calculator</h3><p>Calculate exact age from a birth date.</p></a>
-        <a class="tool-card-link" href="calorie-calculator.html"><h3>Calorie Calculator</h3><p>Estimate daily calorie needs and intake.</p></a>
-        <a class="tool-card-link" href="water-intake-calculator.html"><h3>Water Intake</h3><p>Estimate how much water you need daily.</p></a>
-        <a class="tool-card-link" href="heart-rate-calculator.html"><h3>Heart Rate</h3><p>Find target and resting heart rate ranges.</p></a>
-        <a class="tool-card-link" href="sleep-calculator.html"><h3>Sleep Calculator</h3><p>Plan better sleep and wake-up timing.</p></a>
-        <a class="tool-card-link" href="body-fat-calculator.html"><h3>Body Fat Calculator</h3><p>Estimate body fat percentage easily.</p></a>
-        <a class="tool-card-link" href="bmr-calculator.html"><h3>BMR Calculator</h3><p>Calculate basal metabolic rate.</p></a>
-      </div>
-    </section>
-
-    <section id="finance-tools">
-      <h2 class="section-title">Finance Tools</h2>
-      <div class="tool-grid">
-        <a class="tool-card-link" href="loan.html"><h3>Loan Calculator</h3><p>Estimate payments, interest, and loan cost.</p></a>
-        <a class="tool-card-link" href="interest-calculator.html"><h3>Interest Calculator</h3><p>Calculate simple interest over time.</p></a>
-        <a class="tool-card-link" href="compound-interest-calculator.html"><h3>Compound Interest</h3><p>See how savings grow with compounding.</p></a>
-        <a class="tool-card-link" href="salary-calculator.html"><h3>Salary Calculator</h3><p>Convert salary across hourly or yearly terms.</p></a>
-        <a class="tool-card-link" href="tax-calculator.html"><h3>Tax Calculator</h3><p>Estimate taxes for budgeting and planning.</p></a>
-        <a class="tool-card-link" href="tip-calculator.html"><h3>Tip Calculator</h3><p>Quickly split tips and total bills.</p></a>
-        <a class="tool-card-link" href="discount-calculator.html"><h3>Discount Calculator</h3><p>Find sale prices and savings amounts.</p></a>
-        <a class="tool-card-link" href="markup-calculator.html"><h3>Markup Calculator</h3><p>Set prices with profit margins.</p></a>
-      </div>
-    </section>
-
-    <section id="converters-tools">
-      <h2 class="section-title">Converters &amp; Units</h2>
-      <div class="tool-grid">
-        <a class="tool-card-link" href="decimal-to-fraction.html"><h3>Decimal to Fraction</h3><p>Convert decimal values into fractions.</p></a>
-        <a class="tool-card-link" href="fraction-to-decimal.html"><h3>Fraction to Decimal</h3><p>Turn fractions into decimal numbers.</p></a>
-        <a class="tool-card-link" href="unit-rate-calculator.html"><h3>Unit Rate</h3><p>Compare values on a per-unit basis.</p></a>
-        <a class="tool-card-link" href="distance-calculator.html"><h3>Distance Calculator</h3><p>Measure distance from points or values.</p></a>
-        <a class="tool-card-link" href="circle-calculator.html"><h3>Circle Calculator</h3><p>Find area, radius, and circumference.</p></a>
-        <a class="tool-card-link" href="rectangle-calculator.html"><h3>Rectangle Calculator</h3><p>Calculate area and perimeter.</p></a>
-        <a class="tool-card-link" href="triangle-calculator.html"><h3>Triangle Calculator</h3><p>Work out triangle measurements.</p></a>
-        <a class="tool-card-link" href="date-difference-calculator.html"><h3>Date Difference</h3><p>Count days between two dates.</p></a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
+  <div class="banner">
     <div class="container">
-      <p>&copy; 2026 CalcTools Hub. All rights reserved.</p>
-      <div class="page-footer-links">
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="terms.html">Terms</a>
+      <img src="https://via.placeholder.com/1100x180.png?text=Calculator+Tools+Hub" alt="CalcTools Hub banner" />
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section-row">
+      <div class="section-col">
+        <img src="https://via.placeholder.com/68" alt="Math Tools" />
+        <h3>Math Tools</h3>
+        <a href="simple-calculator.html">Simple Calculator</a>
+        <a href="percentage.html">Percentage Calculator</a>
+        <a href="quadratic-equation.html">Quadratic Equation</a>
+        <a href="fraction-calculator.html">Fraction Calculator</a>
+        <a href="average-calculator.html">Average Calculator</a>
+        <a href="median-calculator.html">Median Calculator</a>
+        <a href="mode-calculator.html">Mode Calculator</a>
+        <a href="factorial-calculator.html">Factorial Calculator</a>
+      </div>
+
+      <div class="section-col">
+        <img src="https://via.placeholder.com/68" alt="Health Tools" />
+        <h3>Health Tools</h3>
+        <a href="bmi.html">BMI Calculator</a>
+        <a href="age.html">Age Calculator</a>
+        <a href="calorie-calculator.html">Calorie Calculator</a>
+        <a href="water-intake-calculator.html">Water Intake Calculator</a>
+        <a href="sleep-calculator.html">Sleep Calculator</a>
+        <a href="bmr-calculator.html">BMR Calculator</a>
+        <a href="body-fat-calculator.html">Body Fat Calculator</a>
+        <a href="heart-rate-calculator.html">Heart Rate Calculator</a>
+      </div>
+
+      <div class="section-col">
+        <img src="https://via.placeholder.com/68" alt="Finance Tools" />
+        <h3>Finance Tools</h3>
+        <a href="loan.html">Loan Calculator</a>
+        <a href="interest-calculator.html">Interest Calculator</a>
+        <a href="compound-interest-calculator.html">Compound Interest Calculator</a>
+        <a href="salary-calculator.html">Salary Calculator</a>
+        <a href="tax-calculator.html">Tax Calculator</a>
+        <a href="tip-calculator.html">Tip Calculator</a>
+        <a href="discount-calculator.html">Discount Calculator</a>
+        <a href="markup-calculator.html">Markup Calculator</a>
+      </div>
+
+      <div class="section-col">
+        <img src="https://via.placeholder.com/68" alt="Converters & Units" />
+        <h3>Converters &amp; Units</h3>
+        <a href="decimal-to-fraction.html">Decimal to Fraction</a>
+        <a href="fraction-to-decimal.html">Fraction to Decimal</a>
+        <a href="unit-rate-calculator.html">Unit Rate Calculator</a>
+        <a href="date-difference-calculator.html">Date Difference Calculator</a>
+        <a href="circle-calculator.html">Circle Calculator</a>
+        <a href="rectangle-calculator.html">Rectangle Calculator</a>
+        <a href="triangle-calculator.html">Triangle Calculator</a>
+        <a href="distance-calculator.html">Distance Calculator</a>
       </div>
     </div>
-  </footer>
+
+    <div class="middle-btn">
+      <a href="math-tools.html">View All Tools</a>
+    </div>
+
+    <div class="gray-box">
+      CalcTools Hub offers a growing collection of free calculators for everyday use. Explore tools for mathematics, health, finance, and unit conversion in a simple layout designed for fast browsing on mobile and desktop devices. Each page is built to be clear, useful, and easy to read.
+    </div>
+
+    <div class="footer">
+      © 2026 CalcTools Hub
+    </div>
+  </div>
 
   <script>
-    function filterTools() {
-      const input = document.getElementById("toolSearch").value.toLowerCase();
-      const cards = document.querySelectorAll(".tool-card-link");
-
-      cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        card.style.display = text.includes(input) ? "block" : "none";
+    function searchTools() {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+      const links = document.querySelectorAll(".section-col a");
+      links.forEach(link => {
+        link.style.display = link.textContent.toLowerCase().includes(query) ? "block" : "none";
       });
     }
   </script>
 </body>
 </html>
-
