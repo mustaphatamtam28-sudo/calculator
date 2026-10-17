@@ -6,10 +6,7 @@
   <title>CalcTools Hub | Free Online Calculators</title>
   <meta name="description" content="Free online calculators for math, health, finance, and converters." />
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
@@ -40,7 +37,7 @@
 
     .header-row {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 12px;
       flex-wrap: wrap;
@@ -51,6 +48,15 @@
       font-weight: 700;
       color: #123f73;
       text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .left-box {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 320px;
     }
 
     .search-box {
@@ -74,6 +80,47 @@
       background: #f5f7fa;
       cursor: pointer;
       font-size: 14px;
+    }
+
+    .calculator-box {
+      background: #eef3f8;
+      padding: 10px;
+      border: 1px solid #c9d4e0;
+      width: 320px;
+      max-width: 100%;
+    }
+
+    .calc-display {
+      background: #fff;
+      border: 1px solid #aab8c7;
+      padding: 10px;
+      min-height: 42px;
+      font-size: 18px;
+      text-align: right;
+      overflow-x: auto;
+      margin-bottom: 10px;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .calc-grid button {
+      padding: 10px 0;
+      border: 1px solid #aab8c7;
+      background: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    .calc-grid .equal-btn {
+      grid-column: span 4;
+      background: #5f8f35;
+      color: #fff;
+      font-weight: 700;
     }
 
     .banner {
@@ -165,7 +212,11 @@
     @media (max-width: 600px) {
       .header-row {
         flex-direction: column;
-        align-items: stretch;
+      }
+
+      .left-box {
+        width: 100%;
+        min-width: 0;
       }
 
       .search-box {
@@ -175,6 +226,10 @@
       .search-box input {
         width: 100%;
         flex: 1;
+      }
+
+      .calculator-box {
+        width: 100%;
       }
 
       .section-row {
@@ -189,10 +244,39 @@
   <div class="header-wrap">
     <div class="container">
       <div class="header-row">
-        <a class="logo" href="index.html">CalcTools Hub</a>
-        <div class="search-box">
-          <input type="text" id="searchInput" placeholder="Free Online Calculators" />
-          <button onclick="searchTools()">Search</button>
+        <div class="left-box">
+          <a class="logo" href="index.html">CalcTools Hub</a>
+          <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Free Online Calculators" />
+            <button onclick="searchTools()">Search</button>
+          </div>
+        </div>
+
+        <div class="calculator-box">
+          <div class="calc-display" id="display">0</div>
+          <div class="calc-grid">
+            <button onclick="appendValue('7')">7</button>
+            <button onclick="appendValue('8')">8</button>
+            <button onclick="appendValue('9')">9</button>
+            <button onclick="appendValue('/')">/</button>
+
+            <button onclick="appendValue('4')">4</button>
+            <button onclick="appendValue('5')">5</button>
+            <button onclick="appendValue('6')">6</button>
+            <button onclick="appendValue('*')">*</button>
+
+            <button onclick="appendValue('1')">1</button>
+            <button onclick="appendValue('2')">2</button>
+            <button onclick="appendValue('3')">3</button>
+            <button onclick="appendValue('-')">-</button>
+
+            <button onclick="appendValue('0')">0</button>
+            <button onclick="appendValue('.')">.</button>
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="appendValue('+')">+</button>
+
+            <button class="equal-btn" onclick="calculateResult()">=</button>
+          </div>
         </div>
       </div>
     </div>
@@ -273,6 +357,29 @@
   </div>
 
   <script>
+    let currentInput = "";
+
+    function appendValue(value) {
+      if (currentInput === "0") currentInput = "";
+      currentInput += value;
+      document.getElementById("display").textContent = currentInput || "0";
+    }
+
+    function clearDisplay() {
+      currentInput = "";
+      document.getElementById("display").textContent = "0";
+    }
+
+    function calculateResult() {
+      try {
+        currentInput = String(eval(currentInput));
+        document.getElementById("display").textContent = currentInput;
+      } catch {
+        document.getElementById("display").textContent = "Error";
+        currentInput = "";
+      }
+    }
+
     function searchTools() {
       const query = document.getElementById("searchInput").value.toLowerCase();
       const links = document.querySelectorAll(".section-col a");
