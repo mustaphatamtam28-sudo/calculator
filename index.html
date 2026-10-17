@@ -1,392 +1,836 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CalcTools Hub | Free Online Calculators</title>
-  <meta name="description" content="Free online calculators for math, health, finance, and converters." />
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #fff;
-      color: #222;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator.net - Free Online Calculators</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .topbar {
-      background: #123f73;
-      color: #fff;
-      padding: 6px 10px;
-      font-size: 13px;
-      font-weight: 700;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+        }
 
-    .container {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 10px;
-    }
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a3a5c, #2d5a87);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
 
-    .header-wrap {
-      background: #d8e3f1;
-      padding: 10px;
-      border-bottom: 1px solid #b8c7d8;
-    }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
 
-    .header-row {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
+        .logo span {
+            color: #4CAF50;
+        }
 
-    .logo {
-      font-size: 20px;
-      font-weight: 700;
-      color: #123f73;
-      text-decoration: none;
-      display: block;
-      margin-bottom: 8px;
-    }
+        .sign-in {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+        }
 
-    .left-box {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      min-width: 320px;
-    }
+        .sign-in:hover {
+            color: white;
+        }
 
-    .search-box {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+        /* Calculator Section */
+        .calculator-section {
+            background: linear-gradient(135deg, #e8f0fe, #d4e4f7);
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
 
-    .search-box input {
-      width: 220px;
-      max-width: 100%;
-      padding: 7px 10px;
-      border: 1px solid #9db0c4;
-      border-radius: 2px;
-      font-size: 14px;
-    }
+        .calculator-container {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 420px;
+            width: 100%;
+        }
 
-    .search-box button {
-      padding: 7px 12px;
-      border: 1px solid #7d92a6;
-      background: #f5f7fa;
-      cursor: pointer;
-      font-size: 14px;
-    }
+        .calc-display {
+            background: #1a3a5c;
+            color: white;
+            font-size: 32px;
+            text-align: left;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            direction: ltr;
+        }
 
-    .calculator-box {
-      background: #eef3f8;
-      padding: 10px;
-      border: 1px solid #c9d4e0;
-      width: 320px;
-      max-width: 100%;
-    }
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+        }
 
-    .calc-display {
-      background: #fff;
-      border: 1px solid #aab8c7;
-      padding: 10px;
-      min-height: 42px;
-      font-size: 18px;
-      text-align: right;
-      overflow-x: auto;
-      margin-bottom: 10px;
-    }
+        .calc-btn {
+            padding: 12px 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #f8f9fa;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
 
-    .calc-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-    }
+        .calc-btn:hover {
+            background: #e2e8f0;
+            transform: translateY(-1px);
+        }
 
-    .calc-grid button {
-      padding: 10px 0;
-      border: 1px solid #aab8c7;
-      background: #fff;
-      font-size: 14px;
-      cursor: pointer;
-      border-radius: 2px;
-    }
+        .calc-btn:active {
+            transform: translateY(1px);
+        }
 
-    .calc-grid .equal-btn {
-      grid-column: span 4;
-      background: #5f8f35;
-      color: #fff;
-      font-weight: 700;
-    }
+        .calc-btn.number {
+            background: #e8f0fe;
+            border-color: #b0c4de;
+        }
 
-    .banner {
-      padding: 14px 0;
-      background: #eef3f8;
-    }
+        .calc-btn.number:hover {
+            background: #d4e4f7;
+        }
 
-    .banner img {
-      width: 100%;
-      display: block;
-      border: 1px solid #c9d4e0;
-      max-height: 180px;
-      object-fit: cover;
-    }
+        .calc-btn.operator {
+            background: #fff3cd;
+            border-color: #ffc107;
+        }
 
-    .section-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      padding: 24px 0 14px;
-    }
+        .calc-btn.operator:hover {
+            background: #ffe69c;
+        }
 
-    .section-col img {
-      width: 68px;
-      height: 68px;
-      border-radius: 50%;
-      display: block;
-      margin-bottom: 10px;
-      object-fit: cover;
-    }
+        .calc-btn.function {
+            background: #f0f0f0;
+            border-color: #aaa;
+            font-size: 12px;
+        }
 
-    .section-col h3 {
-      margin: 0 0 8px;
-      font-size: 16px;
-      color: #123f73;
-    }
+        .calc-btn.equals {
+            background: #4CAF50;
+            color: white;
+            border-color: #388E3C;
+            font-size: 18px;
+        }
 
-    .section-col a {
-      display: block;
-      color: #1f4d77;
-      text-decoration: none;
-      font-size: 13px;
-      line-height: 1.65;
-      margin-bottom: 2px;
-    }
+        .calc-btn.equals:hover {
+            background: #43A047;
+        }
 
-    .section-col a:hover {
-      text-decoration: underline;
-    }
+        .calc-btn.ac {
+            background: #f44336;
+            color: white;
+            border-color: #d32f2f;
+        }
 
-    .middle-btn {
-      text-align: center;
-      padding: 18px 0 24px;
-    }
+        .calc-btn.ac:hover {
+            background: #e53935;
+        }
 
-    .middle-btn a {
-      display: inline-block;
-      background: #5f8f35;
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 2px;
-      font-size: 14px;
-      font-weight: 700;
-    }
+        .mode-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            margin-bottom: 10px;
+            direction: ltr;
+        }
 
-    .gray-box {
-      background: #ededed;
-      padding: 16px 12px;
-      font-size: 13px;
-      line-height: 1.7;
-      color: #444;
-      margin-bottom: 18px;
-    }
+        .mode-toggle input[type="radio"] {
+            cursor: pointer;
+        }
 
-    .footer {
-      text-align: center;
-      font-size: 12px;
-      color: #666;
-      padding: 10px 0 22px;
-    }
+        /* Search Section */
+        .search-section {
+            max-width: 400px;
+            width: 100%;
+        }
 
-    @media (max-width: 900px) {
-      .section-row {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
+        .search-section h2 {
+            color: #1a3a5c;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
 
-    @media (max-width: 600px) {
-      .header-row {
-        flex-direction: column;
-      }
+        .search-box {
+            display: flex;
+            gap: 0;
+        }
 
-      .left-box {
-        width: 100%;
-        min-width: 0;
-      }
+        .search-box input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #1a3a5c;
+            border-radius: 6px 0 0 6px;
+            font-size: 16px;
+            outline: none;
+        }
 
-      .search-box {
-        width: 100%;
-      }
+        .search-box button {
+            padding: 12px 20px;
+            background: #1a3a5c;
+            color: white;
+            border: 2px solid #1a3a5c;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
 
-      .search-box input {
-        width: 100%;
-        flex: 1;
-      }
+        .search-box button:hover {
+            background: #2d5a87;
+        }
 
-      .calculator-box {
-        width: 100%;
-      }
+        /* Categories Section */
+        .categories-section {
+            padding: 40px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-      .section-row {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .category {
+            text-align: center;
+        }
+
+        .category-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            background: #e8f0fe;
+            border: 3px solid #1a3a5c;
+            overflow: hidden;
+        }
+
+        .category-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .category h3 {
+            color: #2d5a87;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .category ul {
+            list-style: none;
+            text-align: right;
+        }
+
+        .category ul li {
+            margin-bottom: 8px;
+        }
+
+        .category ul li a {
+            color: #1a3a5c;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .category ul li a:hover {
+            color: #4CAF50;
+            text-decoration: underline;
+        }
+
+        /* All Calculators Button */
+        .all-calculators-btn {
+            display: block;
+            margin: 40px auto;
+            padding: 15px 40px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .all-calculators-btn:hover {
+            background: #43A047;
+        }
+
+        /* Footer */
+        .footer {
+            background: #e8e8e8;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            color: #1a3a5c;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            margin-top: 15px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .calculator-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calc-buttons {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 4px;
+            }
+
+            .calc-btn {
+                padding: 10px 5px;
+                font-size: 12px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .calc-buttons {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="topbar">CalcTools Hub</div>
 
-  <div class="header-wrap">
-    <div class="container">
-      <div class="header-row">
-        <div class="left-box">
-          <a class="logo" href="index.html">CalcTools Hub</a>
-          <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Free Online Calculators" />
-            <button onclick="searchTools()">Search</button>
-          </div>
+    <!-- Header -->
+    <header class="header">
+        <a href="#" class="logo">Calculator<span>.net</span></a>
+        <a href="#" class="sign-in">تسجيل الدخول</a>
+    </header>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+        <div class="calculator-container">
+            <div class="calc-display" id="display">0</div>
+            <div class="mode-toggle">
+                <input type="radio" name="mode" id="deg" checked value="deg">
+                <label for="deg">Deg</label>
+                <input type="radio" name="mode" id="rad" value="rad">
+                <label for="rad">Rad</label>
+            </div>
+            <div class="calc-buttons">
+                <!-- Row 1 -->
+                <button class="calc-btn function" onclick="calcFunction('sin')">sin</button>
+                <button class="calc-btn function" onclick="calcFunction('cos')">cos</button>
+                <button class="calc-btn function" onclick="calcFunction('tan')">tan</button>
+                <button class="calc-btn number" onclick="appendNumber('7')">7</button>
+                <button class="calc-btn number" onclick="appendNumber('8')">8</button>
+                <button class="calc-btn number" onclick="appendNumber('9')">9</button>
+                <button class="calc-btn operator" onclick="appendOperator('+')">+</button>
+                <button class="calc-btn function" onclick="backspace()">Back</button>
+
+                <!-- Row 2 -->
+                <button class="calc-btn function" onclick="calcFunction('asin')">sin⁻¹</button>
+                <button class="calc-btn function" onclick="calcFunction('acos')">cos⁻¹</button>
+                <button class="calc-btn function" onclick="calcFunction('atan')">tan⁻¹</button>
+                <button class="calc-btn function" onclick="appendConstant('pi')">π</button>
+                <button class="calc-btn function" onclick="appendConstant('e')">e</button>
+                <button class="calc-btn number" onclick="appendNumber('4')">4</button>
+                <button class="calc-btn number" onclick="appendNumber('5')">5</button>
+                <button class="calc-btn number" onclick="appendNumber('6')">6</button>
+                <button class="calc-btn operator" onclick="appendOperator('-')">−</button>
+                <button class="calc-btn function" onclick="useAnswer()">Ans</button>
+
+                <!-- Row 3 -->
+                <button class="calc-btn function" onclick="calcFunction('pow')">x^y</button>
+                <button class="calc-btn function" onclick="calcFunction('cube')">x³</button>
+                <button class="calc-btn function" onclick="calcFunction('square')">x²</button>
+                <button class="calc-btn function" onclick="calcFunction('exp')">e^x</button>
+                <button class="calc-btn function" onclick="calcFunction('tenpow')">10^x</button>
+                <button class="calc-btn number" onclick="appendNumber('1')">1</button>
+                <button class="calc-btn number" onclick="appendNumber('2')">2</button>
+                <button class="calc-btn number" onclick="appendNumber('3')">3</button>
+                <button class="calc-btn operator" onclick="appendOperator('×')">×</button>
+                <button class="calc-btn function" onclick="memoryAdd()">M+</button>
+
+                <!-- Row 4 -->
+                <button class="calc-btn function" onclick="calcFunction('yroot')">√x</button>
+                <button class="calc-btn function" onclick="calcFunction('cuberoot')">³√x</button>
+                <button class="calc-btn function" onclick="calcFunction('sqrt')">√x</button>
+                <button class="calc-btn function" onclick="calcFunction('ln')">ln</button>
+                <button class="calc-btn function" onclick="calcFunction('log')">log</button>
+                <button class="calc-btn number" onclick="appendNumber('0')">0</button>
+                <button class="calc-btn number" onclick="appendNumber('.')">.</button>
+                <button class="calc-btn function" onclick="appendOperator('EXP')">EXP</button>
+                <button class="calc-btn operator" onclick="appendOperator('÷')">÷</button>
+                <button class="calc-btn function" onclick="memorySubtract()">M-</button>
+
+                <!-- Row 5 -->
+                <button class="calc-btn function" onclick="appendOperator('(')">(</button>
+                <button class="calc-btn function" onclick="appendOperator(')')">)</button>
+                <button class="calc-btn function" onclick="calcFunction('reciprocal')">1/x</button>
+                <button class="calc-btn function" onclick="appendOperator('%')">%</button>
+                <button class="calc-btn function" onclick="calcFunction('factorial')">n!</button>
+                <button class="calc-btn function" onclick="toggleSign()">±</button>
+                <button class="calc-btn function" onclick="calcFunction('round')">RND</button>
+                <button class="calc-btn ac" onclick="clearAll()">AC</button>
+                <button class="calc-btn equals" onclick="calculate()">=</button>
+                <button class="calc-btn function" onclick="memoryRecall()">MR</button>
+            </div>
         </div>
 
-        <div class="calculator-box">
-          <div class="calc-display" id="display">0</div>
-          <div class="calc-grid">
-            <button onclick="appendValue('7')">7</button>
-            <button onclick="appendValue('8')">8</button>
-            <button onclick="appendValue('9')">9</button>
-            <button onclick="appendValue('/')">/</button>
-
-            <button onclick="appendValue('4')">4</button>
-            <button onclick="appendValue('5')">5</button>
-            <button onclick="appendValue('6')">6</button>
-            <button onclick="appendValue('*')">*</button>
-
-            <button onclick="appendValue('1')">1</button>
-            <button onclick="appendValue('2')">2</button>
-            <button onclick="appendValue('3')">3</button>
-            <button onclick="appendValue('-')">-</button>
-
-            <button onclick="appendValue('0')">0</button>
-            <button onclick="appendValue('.')">.</button>
-            <button onclick="clearDisplay()">C</button>
-            <button onclick="appendValue('+')">+</button>
-
-            <button class="equal-btn" onclick="calculateResult()">=</button>
-          </div>
+        <div class="search-section">
+            <h2>Free Online Calculators</h2>
+            <div class="search-box">
+                <input type="text" placeholder="ابحث عن آلة حاسبة..." id="searchInput">
+                <button onclick="searchCalculator()">Search</button>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="banner">
-    <div class="container">
-      <img src="https://via.placeholder.com/1100x180.png?text=Calculator+Tools+Hub" alt="CalcTools Hub banner" />
-    </div>
-  </div>
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="categories-grid">
+            <!-- Financial Calculators -->
+            <div class="category">
+                <div class="category-icon">💰</div>
+                <h3>Financial Calculators</h3>
+                <ul>
+                    <li><a href="#">Mortgage Calculator</a></li>
+                    <li><a href="#">Loan Calculator</a></li>
+                    <li><a href="#">Auto Loan Calculator</a></li>
+                    <li><a href="#">Interest Calculator</a></li>
+                    <li><a href="#">Payment Calculator</a></li>
+                    <li><a href="#">Retirement Calculator</a></li>
+                    <li><a href="#">Amortization Calculator</a></li>
+                    <li><a href="#">Investment Calculator</a></li>
+                    <li><a href="#">Inflation Calculator</a></li>
+                    <li><a href="#">Finance Calculator</a></li>
+                    <li><a href="#">Income Tax Calculator</a></li>
+                    <li><a href="#">Compound Interest Calculator</a></li>
+                    <li><a href="#">Salary Calculator</a></li>
+                    <li><a href="#">Interest Rate Calculator</a></li>
+                    <li><a href="#">Sales Tax Calculator</a></li>
+                </ul>
+            </div>
 
-  <div class="container">
-    <div class="section-row">
-      <div class="section-col">
-        <img src="https://via.placeholder.com/68" alt="Math Tools" />
-        <h3>Math Tools</h3>
-        <a href="simple-calculator.html">Simple Calculator</a>
-        <a href="percentage.html">Percentage Calculator</a>
-        <a href="quadratic-equation.html">Quadratic Equation</a>
-        <a href="fraction-calculator.html">Fraction Calculator</a>
-        <a href="average-calculator.html">Average Calculator</a>
-        <a href="median-calculator.html">Median Calculator</a>
-        <a href="mode-calculator.html">Mode Calculator</a>
-        <a href="factorial-calculator.html">Factorial Calculator</a>
-      </div>
+            <!-- Fitness & Health Calculators -->
+            <div class="category">
+                <div class="category-icon">🏋️</div>
+                <h3>Fitness & Health Calculators</h3>
+                <ul>
+                    <li><a href="#">BMI Calculator</a></li>
+                    <li><a href="#">Calorie Calculator</a></li>
+                    <li><a href="#">Body Fat Calculator</a></li>
+                    <li><a href="#">BMR Calculator</a></li>
+                    <li><a href="#">Ideal Weight Calculator</a></li>
+                    <li><a href="#">Pace Calculator</a></li>
+                    <li><a href="#">Pregnancy Calculator</a></li>
+                    <li><a href="#">Pregnancy Conception Calculator</a></li>
+                    <li><a href="#">Due Date Calculator</a></li>
+                </ul>
+            </div>
 
-      <div class="section-col">
-        <img src="https://via.placeholder.com/68" alt="Health Tools" />
-        <h3>Health Tools</h3>
-        <a href="bmi.html">BMI Calculator</a>
-        <a href="age.html">Age Calculator</a>
-        <a href="calorie-calculator.html">Calorie Calculator</a>
-        <a href="water-intake-calculator.html">Water Intake Calculator</a>
-        <a href="sleep-calculator.html">Sleep Calculator</a>
-        <a href="bmr-calculator.html">BMR Calculator</a>
-        <a href="body-fat-calculator.html">Body Fat Calculator</a>
-        <a href="heart-rate-calculator.html">Heart Rate Calculator</a>
-      </div>
+            <!-- Math Calculators -->
+            <div class="category">
+                <div class="category-icon">📐</div>
+                <h3>Math Calculators</h3>
+                <ul>
+                    <li><a href="#">Scientific Calculator</a></li>
+                    <li><a href="#">Fraction Calculator</a></li>
+                    <li><a href="#">Percentage Calculator</a></li>
+                    <li><a href="#">Random Number Generator</a></li>
+                    <li><a href="#">Triangle Calculator</a></li>
+                    <li><a href="#">Standard Deviation Calculator</a></li>
+                </ul>
+            </div>
 
-      <div class="section-col">
-        <img src="https://via.placeholder.com/68" alt="Finance Tools" />
-        <h3>Finance Tools</h3>
-        <a href="loan.html">Loan Calculator</a>
-        <a href="interest-calculator.html">Interest Calculator</a>
-        <a href="compound-interest-calculator.html">Compound Interest Calculator</a>
-        <a href="salary-calculator.html">Salary Calculator</a>
-        <a href="tax-calculator.html">Tax Calculator</a>
-        <a href="tip-calculator.html">Tip Calculator</a>
-        <a href="discount-calculator.html">Discount Calculator</a>
-        <a href="markup-calculator.html">Markup Calculator</a>
-      </div>
+            <!-- Other Calculators -->
+            <div class="category">
+                <div class="category-icon">🔧</div>
+                <h3>Other Calculators</h3>
+                <ul>
+                    <li><a href="#">Age Calculator</a></li>
+                    <li><a href="#">Date Calculator</a></li>
+                    <li><a href="#">Time Calculator</a></li>
+                    <li><a href="#">Hours Calculator</a></li>
+                    <li><a href="#">GPA Calculator</a></li>
+                    <li><a href="#">Grade Calculator</a></li>
+                    <li><a href="#">Concrete Calculator</a></li>
+                    <li><a href="#">Subnet Calculator</a></li>
+                    <li><a href="#">Password Generator</a></li>
+                    <li><a href="#">Conversion Calculator</a></li>
+                </ul>
+            </div>
+        </div>
 
-      <div class="section-col">
-        <img src="https://via.placeholder.com/68" alt="Converters & Units" />
-        <h3>Converters &amp; Units</h3>
-        <a href="decimal-to-fraction.html">Decimal to Fraction</a>
-        <a href="fraction-to-decimal.html">Fraction to Decimal</a>
-        <a href="unit-rate-calculator.html">Unit Rate Calculator</a>
-        <a href="date-difference-calculator.html">Date Difference Calculator</a>
-        <a href="circle-calculator.html">Circle Calculator</a>
-        <a href="rectangle-calculator.html">Rectangle Calculator</a>
-        <a href="triangle-calculator.html">Triangle Calculator</a>
-        <a href="distance-calculator.html">Distance Calculator</a>
-      </div>
-    </div>
+        <a href="#" class="all-calculators-btn">All Calculators ▶</a>
+    </section>
 
-    <div class="middle-btn">
-      <a href="math-tools.html">View All Tools</a>
-    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>
+            Calculator.net's sole focus is to provide fast, comprehensive, convenient, free online calculators in a plethora of areas. Currently, we have around 200 calculators to help you "do the math" quickly in areas such as finance, fitness, health, math, and others, and we are still developing more. Our goal is to become the one-stop, go-to site for people who need to make quick calculations. Additionally, we believe the internet should be a source of free information. Therefore, all of our tools and services are completely free, with no registration required.
+        </p>
+        <p>
+            We coded and developed each calculator individually and put each one through strict, comprehensive testing. However, please inform us if you notice even the slightest error – your input is extremely valuable to us. While most calculators on Calculator.net are designed to be universally applicable for worldwide usage, some are for specific countries only. For example, the Income Tax Calculator is for United States residents only.
+        </p>
+        <div class="footer-links">
+            <a href="#">about us</a> |
+            <a href="#">sitemap</a> |
+            <a href="#">terms of use</a> |
+            <a href="#">privacy policy</a>
+        </div>
+        <div class="copyright">
+            © 2008 - 2026 calculator.net
+        </div>
+    </footer>
 
-    <div class="gray-box">
-      CalcTools Hub offers a growing collection of free calculators for everyday use. Explore tools for mathematics, health, finance, and unit conversion in a simple layout designed for fast browsing on mobile and desktop devices. Each page is built to be clear, useful, and easy to read.
-    </div>
+    <script>
+        let display = document.getElementById('display');
+        let currentInput = '0';
+        let previousInput = '';
+        let operator = '';
+        let shouldResetDisplay = false;
+        let memory = 0;
+        let lastAnswer = 0;
+        let isDegree = true;
 
-    <div class="footer">
-      © 2026 CalcTools Hub
-    </div>
-  </div>
+        function updateDisplay() {
+            display.textContent = currentInput;
+        }
 
-  <script>
-    let currentInput = "";
+        function appendNumber(num) {
+            if (shouldResetDisplay) {
+                currentInput = '';
+                shouldResetDisplay = false;
+            }
+            if (currentInput === '0' && num !== '.') {
+                currentInput = num;
+            } else {
+                if (num === '.' && currentInput.includes('.')) return;
+                currentInput += num;
+            }
+            updateDisplay();
+        }
 
-    function appendValue(value) {
-      if (currentInput === "0") currentInput = "";
-      currentInput += value;
-      document.getElementById("display").textContent = currentInput || "0";
-    }
+        function appendOperator(op) {
+            if (shouldResetDisplay) {
+                shouldResetDisplay = false;
+            }
+            currentInput += op;
+            updateDisplay();
+        }
 
-    function clearDisplay() {
-      currentInput = "";
-      document.getElementById("display").textContent = "0";
-    }
+        function appendConstant(constant) {
+            if (shouldResetDisplay) {
+                currentInput = '';
+                shouldResetDisplay = false;
+            }
+            if (constant === 'pi') {
+                currentInput = Math.PI.toString();
+            } else if (constant === 'e') {
+                currentInput = Math.E.toString();
+            }
+            updateDisplay();
+        }
 
-    function calculateResult() {
-      try {
-        currentInput = String(eval(currentInput));
-        document.getElementById("display").textContent = currentInput;
-      } catch {
-        document.getElementById("display").textContent = "Error";
-        currentInput = "";
-      }
-    }
+        function clearAll() {
+            currentInput = '0';
+            previousInput = '';
+            operator = '';
+            updateDisplay();
+        }
 
-    function searchTools() {
-      const query = document.getElementById("searchInput").value.toLowerCase();
-      const links = document.querySelectorAll(".section-col a");
-      links.forEach(link => {
-        link.style.display = link.textContent.toLowerCase().includes(query) ? "block" : "none";
-      });
-    }
-  </script>
+        function backspace() {
+            if (currentInput.length > 1) {
+                currentInput = currentInput.slice(0, -1);
+            } else {
+                currentInput = '0';
+            }
+            updateDisplay();
+        }
+
+        function toggleSign() {
+            if (currentInput !== '0') {
+                if (currentInput.startsWith('-')) {
+                    currentInput = currentInput.slice(1);
+                } else {
+                    currentInput = '-' + currentInput;
+                }
+            }
+            updateDisplay();
+        }
+
+        function useAnswer() {
+            currentInput = lastAnswer.toString();
+            updateDisplay();
+        }
+
+        function memoryAdd() {
+            memory += parseFloat(currentInput) || 0;
+        }
+
+        function memorySubtract() {
+            memory -= parseFloat(currentInput) || 0;
+        }
+
+        function memoryRecall() {
+            currentInput = memory.toString();
+            updateDisplay();
+        }
+
+        function toRadians(angle) {
+            return isDegree ? angle * (Math.PI / 180) : angle;
+        }
+
+        function toDegrees(angle) {
+            return isDegree ? angle * (180 / Math.PI) : angle;
+        }
+
+        function calcFunction(func) {
+            let num = parseFloat(currentInput);
+            let result;
+
+            switch(func) {
+                case 'sin':
+                    result = Math.sin(toRadians(num));
+                    break;
+                case 'cos':
+                    result = Math.cos(toRadians(num));
+                    break;
+                case 'tan':
+                    result = Math.tan(toRadians(num));
+                    break;
+                case 'asin':
+                    result = toDegrees(Math.asin(num));
+                    break;
+                case 'acos':
+                    result = toDegrees(Math.acos(num));
+                    break;
+                case 'atan':
+                    result = toDegrees(Math.atan(num));
+                    break;
+                case 'square':
+                    result = num * num;
+                    break;
+                case 'cube':
+                    result = num * num * num;
+                    break;
+                case 'sqrt':
+                    result = Math.sqrt(num);
+                    break;
+                case 'cuberoot':
+                    result = Math.cbrt(num);
+                    break;
+                case 'ln':
+                    result = Math.log(num);
+                    break;
+                case 'log':
+                    result = Math.log10(num);
+                    break;
+                case 'exp':
+                    result = Math.exp(num);
+                    break;
+                case 'tenpow':
+                    result = Math.pow(10, num);
+                    break;
+                case 'reciprocal':
+                    result = 1 / num;
+                    break;
+                case 'factorial':
+                    result = factorial(Math.floor(num));
+                    break;
+                case 'round':
+                    result = Math.round(num * 1000000) / 1000000;
+                    break;
+                case 'pow':
+                    previousInput = currentInput;
+                    currentInput = '0';
+                    operator = '^';
+                    updateDisplay();
+                    return;
+                case 'yroot':
+                    previousInput = currentInput;
+                    currentInput = '0';
+                    operator = 'yroot';
+                    updateDisplay();
+                    return;
+                default:
+                    return;
+            }
+
+            currentInput = result.toString();
+            lastAnswer = result;
+            shouldResetDisplay = true;
+            updateDisplay();
+        }
+
+        function factorial(n) {
+            if (n < 0) return NaN;
+            if (n === 0 || n === 1) return 1;
+            let result = 1;
+            for (let i = 2; i <= n; i++) {
+                result *= i;
+            }
+            return result;
+        }
+
+        function calculate() {
+            try {
+                let expression = currentInput
+                    .replace(/×/g, '*')
+                    .replace(/÷/g, '/')
+                    .replace(/%/g, '/100')
+                    .replace(/EXP/g, 'e');
+
+                // Handle power operator
+                if (operator === '^') {
+                    let base = parseFloat(previousInput);
+                    let exp = parseFloat(currentInput);
+                    currentInput = Math.pow(base, exp).toString();
+                    operator = '';
+                } else if (operator === 'yroot') {
+                    let num = parseFloat(previousInput);
+                    let root = parseFloat(currentInput);
+                    currentInput = Math.pow(num, 1/root).toString();
+                    operator = '';
+                } else {
+                    // Safe evaluation
+                    let result = safeEvaluate(expression);
+                    currentInput = result.toString();
+                }
+
+                lastAnswer = parseFloat(currentInput);
+                shouldResetDisplay = true;
+                updateDisplay();
+            } catch (e) {
+                currentInput = 'Error';
+                updateDisplay();
+                setTimeout(() => {
+                    currentInput = '0';
+                    updateDisplay();
+                }, 2000);
+            }
+        }
+
+        function safeEvaluate(expr) {
+            // Replace mathematical functions
+            expr = expr.replace(/sin\(/g, 'Math.sin(');
+            expr = expr.replace(/cos\(/g, 'Math.cos(');
+            expr = expr.replace(/tan\(/g, 'Math.tan(');
+            expr = expr.replace(/sqrt\(/g, 'Math.sqrt(');
+            expr = expr.replace(/log\(/g, 'Math.log10(');
+            expr = expr.replace(/ln\(/g, 'Math.log(');
+
+            // Use Function constructor for safer evaluation
+            try {
+                return new Function('return ' + expr)();
+            } catch (e) {
+                throw new Error('Invalid expression');
+            }
+        }
+
+        function searchCalculator() {
+            let query = document.getElementById('searchInput').value.toLowerCase();
+            if (query) {
+                alert('Searching for: ' + query);
+            }
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (e.key >= '0' && e.key <= '9') appendNumber(e.key);
+            if (e.key === '.') appendNumber('.');
+            if (e.key === '+') appendOperator('+');
+            if (e.key === '-') appendOperator('-');
+            if (e.key === '*') appendOperator('×');
+            if (e.key === '/') appendOperator('÷');
+            if (e.key === 'Enter' || e.key === '=') calculate();
+            if (e.key === 'Escape') clearAll();
+            if (e.key === 'Backspace') backspace();
+            if (e.key === '(') appendOperator('(');
+            if (e.key === ')') appendOperator(')');
+            if (e.key === '%') appendOperator('%');
+        });
+
+        // Mode toggle
+        document.getElementById('deg').addEventListener('change', function() {
+            isDegree = true;
+        });
+
+        document.getElementById('rad').addEventListener('change', function() {
+            isDegree = false;
+        });
+    </script>
 </body>
-</html>
+  </html>
